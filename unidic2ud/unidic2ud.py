@@ -132,8 +132,11 @@ class UniDic2UD(object):
           a=s[i+1:].split(",")
           xpos=(a[0]+"-"+a[1]+"-"+a[2]+"-"+a[3]).replace("-*","")
           if self.UniDic=="ipadic":
-            lemma=a[6]
-            translit=a[7]
+            if len(a)>7:
+              lemma=a[6]
+              translit=a[7]
+            else:
+              lemma=translit=""
           elif len(a)<11:
             lemma=translit=""
           else:
@@ -164,13 +167,17 @@ class UniDic2UD(object):
         upos="X"
         x=(xpos+"-").replace("　","").split("-")
         if x[0]=="名詞":
-          upos="PROPN" if x[1]=="固有名詞" else "NUM" if x[1]=="数詞" else "NOUN"
+          upos="NOUN"
+          if x[1]=="固有名詞":
+            upos="PROPN" 
+          elif x[1]=="数詞" or x[1]=="数":
+            upos="NUM"
         elif x[0]=="助詞":
           upos="ADP"
           if x[1]=="接続助詞":
             upos="SCONJ" if lemma=="て" else "CCONJ"
-          else:
-            upos="PART" if x[1]=="終助詞" else "ADP"
+          elif x[1]=="終助詞":
+            upos="PART" 
         elif x[0]=="接尾辞":
           upos="NOUN" if x[1]=="名詞的" else "PART"
         elif x[0] in f:
