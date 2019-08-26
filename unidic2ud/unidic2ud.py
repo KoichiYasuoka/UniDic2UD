@@ -97,7 +97,7 @@ class UniDic2UD(object):
     if UniDic=="ipadic":
       import MeCab
       self.mecab=MeCab.Tagger().parse
-    elif UniDic!="":
+    elif UniDic!=None:
       d=os.path.join(DOWNLOAD_DIR,UniDic)
       if os.path.isdir(d):
         import MeCab
@@ -111,14 +111,14 @@ class UniDic2UD(object):
     if os.path.isfile(m):
       import ufal.udpipe
       self.model=ufal.udpipe.Model.load(m)
-      if UniDic!="":
-        self.udpipe=ufal.udpipe.Pipeline(self.model,"conllu","none","","").process
-      else:
+      if UniDic==None:
         self.udpipe=ufal.udpipe.Pipeline(self.model,"tokenizer=presegmented","","","").process
+      else:
+        self.udpipe=ufal.udpipe.Pipeline(self.model,"conllu","none","","").process
     else:
       self.udpipe=self.UDPipeWebAPI
   def __call__(self,sentence):
-    if self.UniDic=="":
+    if self.UniDic==None:
       return UDPipeEntry(self.udpipe(sentence).replace("# newdoc\n# newpar\n",""))
     f={ "接頭辞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT", "記号":"SYM", "空白":"SYM" }
     u=""
@@ -199,7 +199,7 @@ class UniDic2UD(object):
     import urllib.request,urllib.parse,json
     c="http://lindat.mff.cuni.cz/services/udpipe/api/process?model="+self.model
     u=urllib.parse.quote(sentence)
-    if self.UniDic=="":
+    if self.UniDic==None:
       sp="\n"
       opt="&tokenizer=presegmented&tagger&parser"
     else:
@@ -218,6 +218,8 @@ class UniDic2UD(object):
       u+=json.loads(q)["result"]
     return u
 
-def load(UniDic,UDPipe="japanese-gsd"):
+def load(UniDic=None,UDPipe="japanese-gsd"):
+  if UniDic==UDPipe:
+    UniDic=None
   return UniDic2UD(UniDic,UDPipe)
 
