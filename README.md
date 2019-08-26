@@ -32,7 +32,8 @@ Tokenizer, POS-tagger, and dependency-parser for modern and contemporary Japanes
 7 欲する 欲する VERB 動詞-一般 _ 8 acl _ SpaceAfter=No|Translit=ホッスル
 ```
 
-`unidic2ud.load(UniDic,UDPipe)` loads a natural language processor pipeline, which uses `UniDic` for tokenizer and POS-tagger, then uses `UDPipe` for dependency-parser. The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 Models](http://hdl.handle.net/11234/1-2998). Available `UniDic` options are:
+`unidic2ud.load(UniDic,UDPipe)` loads a natural language processor pipeline, which uses `UniDic` for tokenizer and POS-tagger, then uses `UDPipe` for dependency-parser. Available `UniDic` options are:
+
 * `UniDic="gendai"`: Use [現代書き言葉UniDic](https://unidic.ninjal.ac.jp/download#unidic_bccwj).
 * `UniDic="spoken"`: Use [現代話し言葉UniDic](https://unidic.ninjal.ac.jp/download#unidic_csj).
 * `UniDic="qkana"`: Use [旧仮名口語UniDic](https://unidic.ninjal.ac.jp/download_all#unidic_qkana).
@@ -43,6 +44,8 @@ Tokenizer, POS-tagger, and dependency-parser for modern and contemporary Japanes
 * `UniDic="wabun"`: Use [中古和文UniDic](https://unidic.ninjal.ac.jp/download_all#unidic_wabun).
 * `UniDic="manyo"`: Use [上代（万葉集）UniDic](https://unidic.ninjal.ac.jp/download_all#unidic_manyo).
 * `UniDic=None`: Use `UDPipe` for tokenizer, POS-tagger, and dependency-parser.
+
+The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 Models](http://hdl.handle.net/11234/1-2998). 
 
 ## Installation
 
