@@ -62,6 +62,8 @@ python -m unidic2ud download.unidic qkana
 python -m unidic2ud download.udpipe japanese-gsd
 ```
 
+Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`; CC BY-NC-SA 4.0 for others.
+
 ## Author
 
 Koichi Yasuoka (安岡孝一)
