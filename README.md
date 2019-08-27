@@ -55,7 +55,7 @@ Binary wheel is available for Linux, and is installed by default when you use `p
 pip install unidic2ud
 ```
 
-By default installation, `UniDic` and `UDPipe` are invoked through Web APIs. If you want to invoke them locally and fast, you can download `UniDic` and `UDPipe` which you use just as follows:
+By default installation, `UniDic` and `UDPipe` are invoked through Web APIs. If you want to invoke them locally and faster, you can download `UniDic` and `UDPipe` which you use just as follows:
 
 ```sh
 python -m unidic2ud download.unidic qkana
