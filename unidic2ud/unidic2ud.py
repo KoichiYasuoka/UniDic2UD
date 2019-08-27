@@ -146,6 +146,9 @@ class UniDic2UD(object):
           else:
             lemma=a[7]
             translit=a[10]
+            if len(a)>21:
+              if self.UniDic=="gendai":
+                translit=a[20]
           id+=1
         else:
           a=s.split(",")
