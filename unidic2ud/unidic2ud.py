@@ -40,6 +40,7 @@ def download(model,option=None):
   else:
     from pip._internal.download import PipSession,_download_http_url
     _download_http_url(Link(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe"),PipSession(),DOWNLOAD_DIR,None,"on")
+    os.rename(os.path.join(DOWNLOAD_DIR,model+"-"+UDPIPE_VERSION+".udpipe"),os.path.join(DOWNLOAD_DIR,model+".udpipe"))
 
 class UDPipeEntry(object):
   def __init__(self,result):
@@ -106,7 +107,7 @@ class UniDic2UD(object):
         d={ "gendai":"dic1", "spoken":"dic2", "qkana":"dic3", "kindai":"dic4", "kinsei":"dic5", "kyogen":"dic6", "wakan":"dic7", "wabun":"dic8", "manyo":"dic9" }
         self.dictkey=d[UniDic]
         self.mecab=self.ChamameWebAPI
-    self.model=UDPipe+"-"+UDPIPE_VERSION
+    self.model=UDPipe
     m=os.path.join(DOWNLOAD_DIR,self.model+".udpipe")
     if os.path.isfile(m):
       import ufal.udpipe
