@@ -147,7 +147,7 @@ class UniDic2UD(object):
             lemma=a[7]
             translit=a[10]
             if len(a)>21:
-              if self.UniDic=="gendai":
+              if self.UniDic=="gendai" or self.UniDic=="spoken":
                 translit=a[20]
           id+=1
         else:
