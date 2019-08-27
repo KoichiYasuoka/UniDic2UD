@@ -131,7 +131,10 @@ class UniDic2UD(object):
         if i>0:
           form=s[0:i]
           a=s[i+1:].split(",")
-          xpos=(a[0]+"-"+a[1]+"-"+a[2]+"-"+a[3]).replace("-*","")
+          xpos=a[0]
+          for t in a[1:4]:
+            if t!="*" and t!="　" and t!="":
+              xpos+="-"+t
           if self.UniDic=="ipadic":
             if len(a)>7:
               lemma=a[6]
