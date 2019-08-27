@@ -5,7 +5,7 @@ URL="https://github.com/KoichiYasuoka/UniDic2UD"
 
 setuptools.setup(
   name="unidic2ud",
-  version="0.9.6",
+  version="0.9.7",
   description="Tokenizer POS-tagger and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",

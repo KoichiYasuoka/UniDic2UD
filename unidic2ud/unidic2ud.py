@@ -91,6 +91,8 @@ class UDPipeEntry(object):
     return self._tokens[item]
   def __len__(self):
     return len(self._tokens)
+  def index(self,item):
+    return self._tokens.index(item)
 
 class UniDic2UD(object):
   def __init__(self,UniDic,UDPipe):
