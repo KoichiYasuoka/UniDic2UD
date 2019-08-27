@@ -157,11 +157,13 @@ class UniDic2UD(object):
           lemma=a[3]
           xpos=a[4]
           translit=a[5].replace("　","")
+        lemma=lemma.replace("*","")
         i=lemma.find("-")
         if i>0:
           lemma=lemma[0:i]
         if lemma=="":
           lemma=form
+        translit=translit.replace("*","")
         if translit==form:
           translit=""
         upos="X"
@@ -172,6 +174,8 @@ class UniDic2UD(object):
             upos="PROPN" 
           elif x[1]=="数詞" or x[1]=="数":
             upos="NUM"
+          elif x[1]=="代名詞":
+            upos="PRON"
         elif x[0]=="助詞":
           upos="ADP"
           if x[1]=="接続助詞":
