@@ -120,9 +120,12 @@ class UniDic2UD(object):
         self.udpipe=ufal.udpipe.Pipeline(self.model,"conllu","none","","").process
     else:
       self.udpipe=self.UDPipeWebAPI
-  def __call__(self,sentence):
+  def __call__(self,sentence,raw=False):
     if self.UniDic==None:
-      return UDPipeEntry(self.udpipe(sentence).replace("# newdoc\n# newpar\n",""))
+      u=self.udpipe(sentence).replace("# newdoc\n# newpar\n","")
+      if raw:
+        return u
+      return UDPipeEntry(u)
     f={ "接頭辞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT", "記号":"SYM", "空白":"SYM" }
     u=""
     for t in sentence.split("\n"):
@@ -197,6 +200,8 @@ class UniDic2UD(object):
           upos=f[x[0]]
         u+="\t".join([str(id),form,lemma,upos,xpos,"_","_","_","_","SpaceAfter=No" if translit=="" else "SpaceAfter=No|Translit="+translit])+"\n"
       u+="\n"
+    if raw:
+      return self.udpipe(u)
     return UDPipeEntry(self.udpipe(u))
   def ChamameWebAPI(self,sentence):
     import random,urllib.request,json
