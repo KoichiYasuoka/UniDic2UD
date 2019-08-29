@@ -90,5 +90,5 @@ def to_conllu(item,offset=1):
         m+="|Translit="+item.norm_
         m=m.replace("_|","")
     return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,"_",str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_",m])
-  return item
+  return "".join(to_conllu(s)+"\n" for s in item)
 
