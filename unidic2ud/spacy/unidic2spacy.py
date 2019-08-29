@@ -77,14 +77,12 @@ def load(UniDic=None,UDPipe="japanese-gsd"):
     UniDic=None
   return UniDicLanguage(UniDic,UDPipe)
 
-def to_conllu(item):
+def to_conllu(item,offset=1):
   if type(item)==Doc:
-    d=item.sents
+    return "".join(to_conllu(s)+"\n" for s in item.sents)
   elif type(item)==Span:
-    d=[item]
+    return "# text = "+str(item)+"\n"+"".join(to_conllu(t,1-item.start)+"\n" for t in item)
   elif type(item)==Token:
-    d=[[item]]
-  else:
-    d=item
-  return "\n".join("".join("\t".join([str(t.i+1),t.orth_,t.lemma_,t.pos_,t.tag_,"_",str(0 if t.head==t else t.head.i+1),t.dep_.lower(),"_","_" if t.whitespace_ else "SpaceAfter=No"])+"\n" for t in s) for s in d)
+    return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,"_",str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_","_" if item.whitespace_ else "SpaceAfter=No"])
+  return item
 
