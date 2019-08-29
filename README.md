@@ -47,6 +47,38 @@ Tokenizer, POS-tagger, and dependency-parser for modern and contemporary Japanes
 
 The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 Models](http://hdl.handle.net/11234/1-2998). 
 
+## Usage via spaCy
+
+If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or later, you can use `UniDic` via spaCy Language pipeline.
+
+```py
+>>> import unidic2ud.spacy
+>>> qkana=unidic2ud.spacy.load("qkana")
+>>> d=qkana("其國を治めんと欲する者は先づ其家を齊ふ")
+>>> print(type(d))
+<class 'spacy.tokens.doc.Doc'>
+>>> print(unidic2ud.spacy.to_conllu(d))
+# text = 其國を治めんと欲する者は先づ其家を齊ふ
+1	其	其の	DET	連体詞	_	2	det	_	SpaceAfter=No|Translit=ソノ
+2	國	国	NOUN	名詞-普通名詞-一般	_	4	obj	_	SpaceAfter=No|Translit=クニ
+3	を	を	ADP	助詞-格助詞	_	2	case	_	SpaceAfter=No|Translit=ヲ
+4	治め	収める	VERB	動詞-一般	_	7	advcl	_	SpaceAfter=No|Translit=オサメ
+5	ん	む	AUX	助動詞	_	4	aux	_	SpaceAfter=No|Translit=ン
+6	と	と	ADP	助詞-格助詞	_	4	case	_	SpaceAfter=No|Translit=ト
+7	欲する	欲する	VERB	動詞-一般	_	8	acl	_	SpaceAfter=No|Translit=ホッスル
+8	者	者	NOUN	名詞-普通名詞-一般	_	14	nsubj	_	SpaceAfter=No|Translit=モノ
+9	は	は	ADP	助詞-係助詞	_	8	case	_	SpaceAfter=No|Translit=ハ
+10	先づ	先ず	ADV	副詞	_	14	advmod	_	SpaceAfter=No|Translit=マヅ
+11	其	其の	DET	連体詞	_	12	det	_	SpaceAfter=No|Translit=ソノ
+12	家	家	NOUN	名詞-普通名詞-一般	_	14	obj	_	SpaceAfter=No|Translit=ウチ
+13	を	を	ADP	助詞-格助詞	_	12	case	_	SpaceAfter=No|Translit=ヲ
+14	齊ふ	整える	VERB	動詞-一般	_	0	root	_	SpaceAfter=No|Translit=トトノフ
+
+>>> t=d[6]
+>>> print(t.i+1,t.orth_,t.lemma_,t.pos_,t.tag_,t.head.i+1,t.dep_,t.whitespace_,t.norm_)
+7 欲する 欲する VERB 動詞-一般 8 acl  ホッスル
+```
+
 ## Installation
 
 Binary wheel is available for Linux, and is installed by default when you use `pip`:

@@ -3,7 +3,7 @@
 
 import numpy
 from spacy.language import Language
-from spacy.symbols import LEMMA,POS,TAG,DEP,HEAD
+from spacy.symbols import NORM,LEMMA,POS,TAG,DEP,HEAD
 from spacy.tokens import Doc,Span,Token
 from spacy.util import get_lang_class
 
@@ -45,6 +45,7 @@ class UniDicTokenizer(object):
     heads=[]
     deps=[]
     spaces=[]
+    norms=[]
     for t in u.split("\n"):
       if t=="" or t.startswith("#"):
         continue
@@ -63,11 +64,11 @@ class UniDicTokenizer(object):
         heads.append(int(head)-int(id))
         deps.append(self.vocab.strings.add(deprel))
       spaces.append(False if "SpaceAfter=No" in misc else True)
+      i=misc.find("Translit=")
+      norms.append(self.vocab.strings.add(form if i<0 else misc[i+9:]))
     doc=Doc(self.vocab,words=words,spaces=spaces)
-    a=numpy.array(list(zip(pos,tags,deps,heads)),dtype="uint64")
-    doc.from_array([POS,TAG,DEP,HEAD],a)
-    b=numpy.array([[lemma] for lemma in lemmas],dtype="uint64")
-    doc.from_array([LEMMA],b)
+    a=numpy.array(list(zip(lemmas,pos,tags,deps,heads,norms)),dtype="uint64")
+    doc.from_array([LEMMA,POS,TAG,DEP,HEAD,NORM],a)
     doc.is_tagged=True
     doc.is_parsed=True
     return doc
@@ -83,6 +84,11 @@ def to_conllu(item,offset=1):
   elif type(item)==Span:
     return "# text = "+str(item)+"\n"+"".join(to_conllu(t,1-item.start)+"\n" for t in item)
   elif type(item)==Token:
-    return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,"_",str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_","_" if item.whitespace_ else "SpaceAfter=No"])
+    m="_" if item.whitespace_ else "SpaceAfter=No"
+    if item.norm_!="":
+      if item.norm_!=item.orth_:
+        m+="|Translit="+item.norm_
+        m=m.replace("_|","")
+    return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,"_",str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_",m])
   return item
 

@@ -130,6 +130,8 @@ class UniDic2UD(object):
     u=""
     for t in sentence.split("\n"):
       u+="# text = "+t+"\n"
+      v=t
+      misc=""
       id=0
       for s in self.mecab(t).split("\n"):
         i=s.find("\t")
@@ -169,6 +171,14 @@ class UniDic2UD(object):
           lemma=a[3]
           xpos=a[4]
           translit=a[5].replace("　","")
+        if v.startswith(form):
+          v=v[len(form):]
+        else:
+          v=v[v.find(form)+len(form):]
+          if misc=="SpaceAfter=No":
+            u=u.rstrip("\t"+misc+"\n")+"\t_\n"
+          elif "SpaceAfter=No|" in misc:
+            u=u.rstrip(misc+"\n")+misc.replace("SpaceAfter=No|","")+"\n"
         lemma=lemma.replace("*","")
         i=lemma.find("-")
         if i>0:
@@ -198,7 +208,8 @@ class UniDic2UD(object):
           upos="NOUN" if x[1]=="名詞的" else "PART"
         elif x[0] in f:
           upos=f[x[0]]
-        u+="\t".join([str(id),form,lemma,upos,xpos,"_","_","_","_","SpaceAfter=No" if translit=="" else "SpaceAfter=No|Translit="+translit])+"\n"
+        misc="SpaceAfter=No" if translit=="" else "SpaceAfter=No|Translit="+translit
+        u+="\t".join([str(id),form,lemma,upos,xpos,"_","_","_","_",misc])+"\n"
       u+="\n"
     if raw:
       return self.udpipe(u)
