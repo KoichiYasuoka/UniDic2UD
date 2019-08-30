@@ -3,18 +3,18 @@
 
 import numpy
 from spacy.language import Language
-from spacy.symbols import NORM,LEMMA,POS,TAG,DEP,HEAD
+from spacy.symbols import LANG,NORM,LEMMA,POS,TAG,DEP,HEAD
 from spacy.tokens import Doc,Span,Token
 from spacy.util import get_lang_class
 
 class UniDicLanguage(Language):
+  lang="ja"
+  max_length=10**6
   def __init__(self,UniDic,UDPipe):
-    self._lang="ja"
-    self.Defaults=get_lang_class("ja").Defaults
+    self.Defaults.lex_attr_getters[LANG]=lambda _text:"ja"
     self.vocab=self.Defaults.create_vocab()
     self.tokenizer=UniDicTokenizer(UniDic,UDPipe,self.vocab)
     self.pipeline=[]
-    self.max_length=10**6
     self._meta = {
       "author":"Koichi Yasuoka",
       "description":"derived from UniDic2UD",
@@ -38,6 +38,8 @@ class UniDicTokenizer(object):
     self.vocab=vocab
   def __call__(self,text):
     u=self.model(text,raw=True) if text else ""
+    vs=self.vocab.strings
+    r=vs.add("ROOT")
     words=[]
     lemmas=[]
     pos=[]
@@ -54,18 +56,18 @@ class UniDicTokenizer(object):
         continue
       id,form,lemma,upos,xpos,dummy_feats,head,deprel,dummy_deps,misc=s
       words.append(form)
-      lemmas.append(self.vocab.strings.add(lemma))
-      pos.append(self.vocab.strings.add(upos))
-      tags.append(self.vocab.strings.add(xpos))
+      lemmas.append(vs.add(lemma))
+      pos.append(vs.add(upos))
+      tags.append(vs.add(xpos))
       if deprel=="root":
         heads.append(0)
-        deps.append(self.vocab.strings.add("ROOT"))
+        deps.append(r)
       else:
         heads.append(int(head)-int(id))
-        deps.append(self.vocab.strings.add(deprel))
+        deps.append(vs.add(deprel))
       spaces.append(False if "SpaceAfter=No" in misc else True)
       i=misc.find("Translit=")
-      norms.append(self.vocab.strings.add(form if i<0 else misc[i+9:]))
+      norms.append(vs.add(form if i<0 else misc[i+9:]))
     doc=Doc(self.vocab,words=words,spaces=spaces)
     a=numpy.array(list(zip(lemmas,pos,tags,deps,heads,norms)),dtype="uint64")
     doc.from_array([LEMMA,POS,TAG,DEP,HEAD,NORM],a)
