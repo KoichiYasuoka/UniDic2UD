@@ -152,10 +152,7 @@ class UniDic2UD(object):
             lemma=translit=""
           else:
             lemma=a[7]
-            translit=a[10]
-            if len(a)>21:
-              if self.UniDic=="gendai" or self.UniDic=="spoken":
-                translit=a[20]
+            translit=a[6] if self.UniDic=="gendai" or self.UniDic=="spoken" else a[10]
           id+=1
         else:
           a=s.split(",")
