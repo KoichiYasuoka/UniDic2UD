@@ -126,7 +126,7 @@ class UniDic2UD(object):
       if raw:
         return u
       return UDPipeEntry(u)
-    f={ "接頭辞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT", "記号":"SYM", "空白":"SYM" }
+    f={ "接頭辞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT", "記号":"SYM" }
     u=""
     for t in sentence.split("\n"):
       u+="# text = "+t+"\n"
@@ -171,6 +171,9 @@ class UniDic2UD(object):
           lemma=a[3]
           xpos=a[4]
           translit=a[5].replace("　","")
+        if xpos=="空白" or xpos=="記号-空白":
+          id-=1
+          continue
         if v.startswith(form):
           v=v[len(form):]
         else:
