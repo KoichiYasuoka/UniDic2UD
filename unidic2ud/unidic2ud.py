@@ -126,7 +126,7 @@ class UniDic2UD(object):
       if raw:
         return u
       return UDPipeEntry(u)
-    f={ "接頭辞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT", "記号":"SYM" }
+    f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT", "記号":"SYM" }
     u=""
     for t in sentence.split("\n"):
       u+="# text = "+t+"\n"
