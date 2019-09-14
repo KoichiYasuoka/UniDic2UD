@@ -30,6 +30,10 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 >>> t=s[7]
 >>> print(t.id,t.form,t.lemma,t.upos,t.xpos,t.feats,t.head.id,t.deprel,t.deps,t.misc)
 7 欲する 欲する VERB 動詞-一般 _ 8 acl _ SpaceAfter=No|Translit=ホッスル
+
+>>> f=open("tmp.svg","w")
+>>> f.write(s.to_svg())
+>>> f.close()
 ```
 
 `unidic2ud.load(UniDic,UDPipe)` loads a natural language processor pipeline, which uses `UniDic` for tokenizer POS-tagger and lemmatizer, then uses `UDPipe` for dependency-parser. Available `UniDic` options are:

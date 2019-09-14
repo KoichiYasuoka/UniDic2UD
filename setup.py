@@ -5,7 +5,7 @@ URL="https://github.com/KoichiYasuoka/UniDic2UD"
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.0.5",
+  version="1.1.0",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
@@ -18,7 +18,7 @@ setuptools.setup(
   install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996","pip>=10.0.1"],
   python_requires=">=3.6",
   package_data={
-    "udkanbun":["./ud-kanbun.udpipe","./mecab-kanbun/*"],
+    "unidic2ud":["./*.js"],
   },
   classifiers=[
     "License :: OSI Approved :: MIT License",
