@@ -101,10 +101,10 @@ class UDPipeEntry(object):
     if item==0:
       s+=str(self)
     else:
-      j=self[item].id-item
-      for i,t in enumerate(self):
-        if t.id-i==j and i>0:
-          s+=str(t)+'\n'
+      from itertools import takewhile
+      i=item-self[item].id
+      for j in takewhile(lambda j:j-self[j].id==i,range(i+1,len(self))):
+        s+=str(self[j])+'\n'
     s+='</text>\n<script type="text/javascript"><![CDATA[\n'
     f=open(os.path.join(PACKAGE_DIR,"conllusvgview.js"),"r")
     s+=f.read()
