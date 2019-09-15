@@ -35,7 +35,7 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 >>> f.write(s.to_svg())
 >>> f.close()
 ```
-![trial.svg](https://github.com/KoichiYasuoka/UniDic2UD/blob/master/trial.png)
+![trial.svg](https://raw.githubusercontent.com/KoichiYasuoka/UniDic2UD/master/trial.png)
 
 `unidic2ud.load(UniDic,UDPipe)` loads a natural language processor pipeline, which uses `UniDic` for tokenizer POS-tagger and lemmatizer, then uses `UDPipe` for dependency-parser. Available `UniDic` options are:
 
