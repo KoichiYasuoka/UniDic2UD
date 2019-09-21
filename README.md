@@ -113,7 +113,7 @@ sh -x ./install.sh /usr/local
 pip3 install unidic2ud
 ```
 
-In Cygwin64 please use `python3` command instead of `python`.
+Use `python3` command in Cygwin64 instead of `python`.
 
 ## Author
 
