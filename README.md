@@ -84,7 +84,7 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 7 欲する 欲する VERB 動詞-一般 8 acl  ホッスル
 ```
 
-## Installation
+## Installation for Linux
 
 Binary wheel is available for Linux, and is installed by default when you use `pip`:
 
@@ -100,6 +100,20 @@ python -m unidic2ud download.udpipe japanese-gsd
 ```
 
 Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`; CC BY-NC-SA 4.0 for others.
+
+## Installation for Cygwin64
+
+For installing in [Cygwin64](https://www.cygwin.com/install.html), make sure to get `gcc-g++` `git` `python36-pip` `python3-devel` `swig` packages, and then:
+
+```sh
+cd /tmp
+git clone https://github.com/KoichiYasuoka/mecab-cygwin64.git
+cd mecab-cygwin64
+sh -x ./install.sh /usr/local
+pip3 install unidic2ud
+```
+
+In Cygwin64 please use `python3` command instead of `python`.
 
 ## Author
 
