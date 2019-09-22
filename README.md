@@ -106,10 +106,7 @@ Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`;
 For installing in [Cygwin64](https://www.cygwin.com/install.html), make sure to get `gcc-g++` `git` `python37-pip` `python37-devel` `swig` packages, and then:
 
 ```sh
-cd /tmp
-git clone https://github.com/KoichiYasuoka/mecab-cygwin64.git
-cd mecab-cygwin64
-sh -x ./install.sh /usr/local
+pip3.7 install git+https://github.com/KoichiYasuoka/mecab-cygwin64
 pip3.7 install unidic2ud
 ```
 
