@@ -97,6 +97,7 @@ By default installation, `UniDic` and `UDPipe` are invoked through Web APIs. If 
 ```sh
 python -m unidic2ud download.unidic qkana
 python -m unidic2ud download.udpipe japanese-gsd
+python -m unidic2ud dictlist
 ```
 
 Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`; CC BY-SA 4.0 for `japanese-gsd`; CC BY-NC-SA 4.0 for others.

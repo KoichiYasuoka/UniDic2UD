@@ -42,6 +42,11 @@ def download(model,option=None):
     _download_http_url(Link(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe"),PipSession(),DOWNLOAD_DIR,None,"on")
     os.rename(os.path.join(DOWNLOAD_DIR,model+"-"+UDPIPE_VERSION+".udpipe"),os.path.join(DOWNLOAD_DIR,model+".udpipe"))
 
+def dictlist():
+  import subprocess
+  os.makedirs(DOWNLOAD_DIR,exist_ok=True)
+  return subprocess.check_output(["/bin/ls","-1tr",DOWNLOAD_DIR]).decode("utf-8") 
+
 class UDPipeEntry(object):
   def __init__(self,result):
     if "\n" in result:
