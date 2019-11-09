@@ -43,10 +43,6 @@ class Tree(unidic2ud.UDPipeEntry):
           elif d=="advcl" or d=="obl":
             if self[i].head.id-id==1:
               x=id+1
-      elif self[i].head.id>id:
-        if c!=[]:
-          s.append(c)
-        c=[i]
       else:
         c.append(i)
     if c!=[]:
@@ -204,14 +200,16 @@ class Token(object):
   def feature_list(self,index):
     return self.feature.split(",")[index]
 
-class UniDic2CaboCha(unidic2ud.UniDic2UD):
+class UniDic2CaboCha(object):
+  def __init__(self,UniDic):
+    self.UniDic2UD=unidic2ud.UniDic2UD(UniDic,"japanese-gsd")
   def parse(self,sentence):
-    return Tree(self(sentence,raw=True))
+    return Tree(self.UniDic2UD(sentence,raw=True))
   def parseToString(self,sentence):
     return self.parse(sentence).toString(0)
 
 def Parser(UniDic=None):
   if UniDic==None:
     UniDic="ipadic"
-  return UniDic2CaboCha(UniDic,UDPipe="japanese-gsd")
+  return UniDic2CaboCha(UniDic)
 
