@@ -52,6 +52,50 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 
 The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 Models](http://hdl.handle.net/11234/1-2998). 
 
+## CaboCha-like usage
+
+```py
+>>> import unidic2ud.cabocha as CaboCha
+>>> qkana=CaboCha.Parser("qkana")
+>>> s=qkana.parse("其國を治めんと欲する者は先づ其家を齊ふ")
+>>> print(s.toString(CaboCha.FORMAT_TREE_LATTICE)) 
+  其-D
+  國を-D
+治めんと-D
+    欲する-D
+        者は-------D
+          先づ-----D
+              其-D |
+              家を-D
+                齊ふ
+EOS
+* 0 1D 0/0 0.000000
+其	連体詞,*,*,*,*,*,其の,ソノ,*,DET	1<-det-2
+* 1 2D 0/1 0.000000
+國	名詞,普通名詞,一般,*,*,*,国,クニ,*,NOUN	2<-obj-4
+を	助詞,格助詞,*,*,*,*,を,ヲ,*,ADP	3<-case-2
+* 2 3D 0/1 0.000000
+治め	動詞,一般,*,*,*,*,収める,オサメ,*,VERB	4<-advcl-7
+ん	助動詞,*,*,*,*,*,む,ン,*,AUX	5<-aux-4
+と	助詞,格助詞,*,*,*,*,と,ト,*,ADP	6<-case-4
+* 3 4D 0/0 0.000000
+欲する	動詞,一般,*,*,*,*,欲する,ホッスル,*,VERB	7<-acl-8
+* 4 8D 0/1 0.000000
+者	名詞,普通名詞,一般,*,*,*,者,モノ,*,NOUN	8<-nsubj-14
+は	助詞,係助詞,*,*,*,*,は,ハ,*,ADP	9<-case-8
+* 5 8D 0/0 0.000000
+先づ	副詞,*,*,*,*,*,先ず,マヅ,*,ADV	10<-advmod-14
+* 6 7D 0/0 0.000000
+其	連体詞,*,*,*,*,*,其の,ソノ,*,DET	11<-det-12
+* 7 8D 0/1 0.000000
+家	名詞,普通名詞,一般,*,*,*,家,ウチ,*,NOUN	12<-obj-14
+を	助詞,格助詞,*,*,*,*,を,ヲ,*,ADP	13<-case-12
+* 8 -1D 0/0 0.000000
+齊ふ	動詞,一般,*,*,*,*,整える,トトノフ,*,VERB	14<-root
+EOS
+```
+Available formats for `toString(format)` are `FORMAT_TREE` `FORMAT_LATTICE` `FORMAT_TREE_LATTICE` `FORMAT_XML` and `FORMAT_CONLL`.
+
 ## Usage via spaCy
 
 If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or later, you can use `UniDic` via spaCy Language pipeline.
