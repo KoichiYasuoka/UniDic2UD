@@ -22,6 +22,13 @@ class Tree(unidic2ud.UDPipeEntry):
       elif x==id:
         c.append(i)
         x=0
+        d=self[i].deprel
+        if d=="compound" or d=="nummod":
+          if self[i].head.id>id:
+            x=self[i].head.id
+        elif d=="advcl" or d=="obl":
+          if self[i].head.id-id==1:
+            x=id+1
       elif self[i].upos in m:
         if self[i].head.id<id:
           c.append(i)
@@ -107,9 +114,9 @@ class Tree(unidic2ud.UDPipeEntry):
           n[i]="-"*(d*2-1)+"D"+n[i][d*2:]
           for j in range(i+1,d-1):
             n[j]=n[j][0:d*2-1]+"|"+n[j][d*2:]
-        h=max([i*2+j for i,j in enumerate(l)])+2-x*2
+        h=max([(x-i)*2+j for i,j in enumerate(l)])
         for i in range(x):
-          result+=" "*(h+i*2-l[i])+m[i]+n[i][i*2:].rstrip()+"\n"
+          result+=" "*(h-(x-i)*2-l[i])+m[i]+n[i][i*2:].rstrip()+"\n"
         result+="EOS\n"
       if format==1 or format==2:
         for i,d,t,h,f,w,z in self._chunkinfo[k]:
