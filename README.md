@@ -52,7 +52,7 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 
 The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 Models](http://hdl.handle.net/11234/1-2998). 
 
-## CaboCha-like usage
+## CaboCha emulator usage
 
 ```py
 >>> import unidic2ud.cabocha as CaboCha
