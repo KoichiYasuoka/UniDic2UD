@@ -102,7 +102,6 @@ EOS
 * `CaboCha.FORMAT_CONLL`: Universal Dependencies CoNLL-U (numbered as 4)
 
 You can simply use `udcabocha` on the command line:
-
 ```sh
 echo 其國を治めんと欲する者は先づ其家を齊ふ | udcabocha -U qkana -f 2
 ```
@@ -143,30 +142,25 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 ## Installation for Linux
 
 Binary wheel is available for Linux, and is installed by default when you use `pip`:
-
 ```sh
 pip install unidic2ud
 ```
 
 By default installation, `UniDic` and `UDPipe` are invoked through Web APIs. If you want to invoke them locally and faster, you can download `UniDic` and `UDPipe` which you use just as follows:
-
 ```sh
 python -m unidic2ud download.unidic qkana
 python -m unidic2ud download.udpipe japanese-gsd
 python -m unidic2ud dictlist
 ```
-
 Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`; CC BY-SA 4.0 for `japanese-gsd`; CC BY-NC-SA 4.0 for others.
 
 ## Installation for Cygwin64
 
 For installing in [Cygwin64](https://www.cygwin.com/install.html), make sure to get `gcc-g++` `git` `python37-pip` `python37-devel` `swig` packages, and then:
-
 ```sh
 pip3.7 install git+https://github.com/KoichiYasuoka/mecab-cygwin64
 pip3.7 install unidic2ud
 ```
-
 Use `python3.7` command in Cygwin64 instead of `python` (even for downloading dictionaries). For installing in old Cygwin (32-bit), try to use [mecab-cygwin32](https://github.com/KoichiYasuoka/mecab-cygwin32) instead of [mecab-cygwin64](https://github.com/KoichiYasuoka/mecab-cygwin64).
 
 ## Author
