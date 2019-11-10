@@ -21,6 +21,12 @@ def main():
         u=sys.argv[i]
       else:
         u=sys.argv[i][2:]
+    elif o.startswith("--download="):
+      d=sys.argv[i][11:]
+      if d>"":
+        from unidic2ud import download
+        download(d)
+      usage()
     elif o=="-h" or o=="--help":
       usage()
     else:
@@ -58,10 +64,11 @@ class parser(object):
 
 def usage():
   print("Usage: udcabocha -U UniDic [-f 0-4] file",file=sys.stderr)
+  print("       udcabocha --download=Dic",file=sys.stderr)
   from unidic2ud import dictlist
   s=dictlist()
   if s>"":
-    print(" Dict: "+s.replace(".udpipe","(udpipe)").replace("\n"," ").rstrip(),file=sys.stderr)
+    print("  Dic: "+s.replace(".udpipe","(udpipe)").replace("\n"," ").rstrip(),file=sys.stderr)
   sys.exit()
 
 if __name__=="__main__":
