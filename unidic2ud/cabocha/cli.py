@@ -24,8 +24,12 @@ def main():
     elif o.startswith("--download="):
       d=sys.argv[i][11:]
       if d>"":
-        from unidic2ud import download
-        download(d)
+        from unidic2ud import download,dictlist
+        s=dictlist().replace(".udpipe","").split()
+        if d in s:
+          print("udcabocha: "+d+" was already downloaded",file=sys.stderr)
+        else:
+          download(d)
       usage()
     elif o=="-h" or o=="--help":
       usage()
