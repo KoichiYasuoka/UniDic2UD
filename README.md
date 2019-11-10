@@ -161,3 +161,7 @@ Use `python3.7` command in Cygwin64 instead of `python` (even for downloading di
 
 Koichi Yasuoka (安岡孝一)
 
+## References
+
+* 安岡孝一: 漢日英Universal Dependencies平行コーパスとその差異, 人文科学とコンピュータシンポジウム「じんもんこん2019」論文集 (2019年12月).
+* Koichi Yasuoka: Universal Dependencies Parallel Corpora on Classical Chinese, Modern Japanese, and Modern English; Jinmoncom 2019: IPSJ Symposium Series, Vol.2019 (December 2019).
