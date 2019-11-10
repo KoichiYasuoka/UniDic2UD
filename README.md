@@ -94,7 +94,12 @@ EOS
 齊ふ	動詞,一般,*,*,*,*,整える,トトノフ,*,VERB	14<-root
 EOS
 ```
-`CaboCha.Parser(UniDic)` is an alias for `unidic2ud.load(UniDic,UDPipe="japanese-gsd")`, and its default is "ipadic".  For the output, `toString(format)` has five available formats: `FORMAT_TREE` `FORMAT_LATTICE` `FORMAT_TREE_LATTICE` `FORMAT_XML` and `FORMAT_CONLL`.
+`CaboCha.Parser(UniDic)` is an alias for `unidic2ud.load(UniDic,UDPipe="japanese-gsd")`, and its default is "ipadic". `CaboCha.Tree.toString(format)` has five available formats:
+* `CaboCha.FORMAT_TREE`: tree (numbered as 0)
+* `CaboCha.FORMAT_LATTICE`: lattice (numbered as 1)
+* `CaboCha.FORMAT_TREE_LATTICE`: tree + lattice (numbered as 2)
+* `CaboCha.FORMAT_XML`: XML (numbered as 3)
+* `CaboCha.FORMAT_CONLL`: Universal Dependencies CoNLL-U (numbered as 4)
 
 ## Usage via spaCy
 
@@ -164,4 +169,4 @@ Koichi Yasuoka (安岡孝一)
 ## References
 
 * 安岡孝一: 漢日英Universal Dependencies平行コーパスとその差異, 人文科学とコンピュータシンポジウム「じんもんこん2019」論文集 (2019年12月).
-* Koichi Yasuoka: Universal Dependencies Parallel Corpora on Classical Chinese, Modern Japanese, and Modern English; Jinmoncom 2019: IPSJ Symposium Series, Vol.2019 (December 2019).
+* Koichi Yasuoka: Universal Dependencies Parallel Corpora on Classical Chinese, Modern Japanese, and Modern English. Jinmoncom 2019: IPSJ Symposium Series, Vol.2019 (December 2019).
