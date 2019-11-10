@@ -70,9 +70,8 @@ def usage():
   print("Usage: udcabocha -U UniDic [-f 0-4] file",file=sys.stderr)
   print("       udcabocha --download=Dic",file=sys.stderr)
   from unidic2ud import dictlist
-  s=dictlist()
-  if s>"":
-    print("  Dic: "+s.replace(".udpipe","(udpipe)").replace("\n"," ").rstrip(),file=sys.stderr)
+  s="  Dic: ipadic\n"+dictlist().replace(".udpipe","(udpipe)")
+  print(s.replace("\n"," ").rstrip(),file=sys.stderr)
   sys.exit()
 
 if __name__=="__main__":
