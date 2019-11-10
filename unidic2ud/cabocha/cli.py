@@ -47,14 +47,14 @@ class parser(object):
     self.format=format
     if format==4:
       from unidic2ud import load
-      self.load=load(UniDic)
+      self.parse=load(UniDic)
     else:
       from unidic2ud.cabocha import Parser
-      self.load=Parser(UniDic)
+      self.parse=Parser(UniDic).parse
   def __call__(self,sentence):
     if self.format==4:
-      return self.load(sentence,raw=True)
-    return self.load.parse(sentence).toString(self.format)
+      return self.parse(sentence,raw=True)
+    return self.parse(sentence).toString(self.format)
 
 def usage():
   print("Usage: udcabocha -U UniDic [-f 0-4] file",file=sys.stderr)
