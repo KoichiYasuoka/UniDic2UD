@@ -37,10 +37,11 @@ def main():
       print(ja.parse(s).toString(f),end="")
   ja=Parser(u)
   while i<argc:
-    p=fopen(sys.argv[i],"r",encoding="utf-8")
+    p=open(sys.argv[i],"r",encoding="utf-8")
     s=p.read()
     p.close()
     print(ja.parse(s).toString(f),end="")
+    i+=1
 
 def usage():
   print("Usage: udcabocha -U UniDic [-f 0-4] file",file=sys.stderr)
