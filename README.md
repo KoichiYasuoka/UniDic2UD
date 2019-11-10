@@ -101,6 +101,13 @@ EOS
 * `CaboCha.FORMAT_XML`: XML (numbered as 3)
 * `CaboCha.FORMAT_CONLL`: Universal Dependencies CoNLL-U (numbered as 4)
 
+You can simply use `udcabocha` on the command line:
+
+```sh
+echo 其國を治めんと欲する者は先づ其家を齊ふ | udcabocha -U qkana -f 2
+```
+`-U UniDic` specifies `UniDic` (default is `-U ipadic`). `-f format` specifies the output format in 0 to 4 (default is `-f 0`).
+
 ## Usage via spaCy
 
 If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or later, you can use `UniDic` via spaCy Language pipeline.
