@@ -94,7 +94,7 @@ EOS
 齊ふ	動詞,一般,*,*,*,*,整える,トトノフ,*,VERB	14<-root
 EOS
 ```
-Available formats for `toString(format)` are `FORMAT_TREE` `FORMAT_LATTICE` `FORMAT_TREE_LATTICE` `FORMAT_XML` and `FORMAT_CONLL`.
+`CaboCha.Parser(UniDic)` is an alias for `unidic2ud.load(UniDic,UDPipe="japanese-gsd")`, and its default is "ipadic".  For the output, `toString(format)` has five available formats: `FORMAT_TREE` `FORMAT_LATTICE` `FORMAT_TREE_LATTICE` `FORMAT_XML` and `FORMAT_CONLL`.
 
 ## Usage via spaCy
 
