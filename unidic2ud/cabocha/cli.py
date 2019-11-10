@@ -1,5 +1,4 @@
 import sys
-from unidic2ud.cabocha import Parser
 
 def main():
   argc=len(sys.argv)
@@ -28,23 +27,41 @@ def main():
       break
     i+=1
   else:
-    ja=Parser(u)
+    ja=parser(u,f)
     while True:
       try:
         s=input()
       except:
         return
-      print(ja.parse(s).toString(f),end="")
-  ja=Parser(u)
+      print(ja(s),end="")
+  ja=parser(u,f)
   while i<argc:
     p=open(sys.argv[i],"r",encoding="utf-8")
     s=p.read()
     p.close()
-    print(ja.parse(s).toString(f),end="")
+    print(ja(s),end="")
     i+=1
+
+class parser(object):
+  def __init__(self,UniDic,format):
+    self.format=format
+    if format==4:
+      from unidic2ud import load
+      self.load=load(UniDic)
+    else:
+      from unidic2ud.cabocha import Parser
+      self.load=Parser(UniDic)
+  def __call__(self,sentence):
+    if self.format==4:
+      return self.load(sentence,raw=True)
+    return self.load.parse(sentence).toString(self.format)
 
 def usage():
   print("Usage: udcabocha -U UniDic [-f 0-4] file",file=sys.stderr)
+  from unidic2ud import dictlist
+  s=dictlist()
+  if s>"":
+    print(" Dict: "+s.replace(".udpipe","(udpipe)").replace("\n"," ").rstrip(),file=sys.stderr)
   sys.exit()
 
 if __name__=="__main__":
