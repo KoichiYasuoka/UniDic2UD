@@ -149,7 +149,7 @@ class UniDic2UD(object):
       if raw:
         return u
       return UDPipeEntry(u)
-    f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT", "記号":"SYM" }
+    f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT" }
     u=""
     for t in sentence.split("\n"):
       u+="# text = "+t+"\n"
@@ -229,6 +229,8 @@ class UniDic2UD(object):
             upos="PART" 
         elif x[0]=="接尾辞":
           upos="NOUN" if x[1]=="名詞的" else "PART"
+        elif x[0]=="記号":
+          upos="PUNCT" if x[1]=="句点" or x[1]=="読点" else "SYM"
         elif x[0] in f:
           upos=f[x[0]]
         misc="SpaceAfter=No" if translit=="" else "SpaceAfter=No|Translit="+translit
