@@ -41,7 +41,7 @@ class Tree(unidic2ud.UDPipeEntry):
             if self[i].head.id>id:
               x=self[i].head.id
           elif d=="advcl" or d=="obl":
-            if self[i].head.id-id==1:
+            if self[i].head.id-id==1 and self[i].upos!="ADJ":
               x=id+1
       else:
         c.append(i)
