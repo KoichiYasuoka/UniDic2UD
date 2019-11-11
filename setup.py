@@ -15,13 +15,7 @@ setuptools.setup(
   license="MIT",
   keywords="unidic udpipe mecab nlp",
   packages=setuptools.find_packages(),
-  install_requires=[
-    "mecab-cygwin64@git+https://github.com/KoichiYasuoka/mecab-cygwin64 ; sys.platform=='cygwin' and platform.machine=='x86_64'",
-    "mecab-cygwin32@git+https://github.com/KoichiYasuoka/mecab-cygwin32 ; sys.platform=='cygwin' and platform.machine!='x86_64'",
-    "ufal.udpipe>=1.2.0",
-    "mecab-python3>=0.996",
-    "pip>=10.0.1"
-  ],
+  install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996","pip>=10.0.1"],
   python_requires=">=3.6",
   package_data={
     "unidic2ud":["./*.js"],
