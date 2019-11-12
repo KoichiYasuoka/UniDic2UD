@@ -163,6 +163,13 @@ pip3.7 install unidic2ud
 ```
 Use `python3.7` command in Cygwin64 instead of `python` (even for downloading dictionaries). For installing in old Cygwin (32-bit), try to use [mecab-cygwin32](https://github.com/KoichiYasuoka/mecab-cygwin32) instead of [mecab-cygwin64](https://github.com/KoichiYasuoka/mecab-cygwin64).
 
+## Installation for Jupyter Notebook (Google Colaboratory)
+
+```py
+!pip install unidic2ud
+!udcabocha --download=japanese-gsd
+```
+
 ## Author
 
 Koichi Yasuoka (安岡孝一)
