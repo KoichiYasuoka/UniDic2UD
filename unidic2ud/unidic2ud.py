@@ -144,14 +144,28 @@ class UniDic2UD(object):
     else:
       self.udpipe=self.UDPipeWebAPI
   def __call__(self,sentence,raw=False):
+    sent=sentence
+    i=sent.find("\u3099")
+    while i>0:
+      f={"う":"ゔ","ウ":"ヴ","ワ":"ヷ","ヰ":"ヸ","ヱ":"ヹ","ヲ":"ヺ"}
+      if sent[i-1] in f:
+        c=f[sent[i-1]]
+      else:
+        c=chr(ord(sent[i-1])+1)
+      sent=sent[0:i-1]+c+sent[i+1:]
+      i=sent.find("\u3099")
+    i=sent.find("\u309A")
+    while i>0:
+      sent=sent[0:i-1]+chr(ord(sent[i-1])+2)+sent[i+1:]
+      i=sent.find("\u309A")
     if self.UniDic==None:
-      u=self.udpipe(sentence).replace("# newdoc\n# newpar\n","")
+      u=self.udpipe(sent).replace("# newdoc\n# newpar\n","")
       if raw:
         return u
       return UDPipeEntry(u)
     f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT" }
     u=""
-    for t in sentence.split("\n"):
+    for t in sent.split("\n"):
       u+="# text = "+t+"\n"
       v=t
       misc=""
