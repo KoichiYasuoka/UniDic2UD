@@ -31,7 +31,7 @@ def main():
         else:
           download(d)
       usage()
-    elif o=="-h" or o=="--help":
+    elif o=="-h" or o=="--help" or o=="-v" or o=="--version":
       usage()
     else:
       break
@@ -67,9 +67,11 @@ class parser(object):
     return self.parse(sentence).toString(self.format)
 
 def usage():
+  from pkg_resources import get_distribution
+  from unidic2ud import dictlist
+  print("UniDic2UD Version "+get_distribution("unidic2ud").version,file=sys.stderr)
   print("Usage: udcabocha -U UniDic [-f 0-4] file",file=sys.stderr)
   print("       udcabocha --download=Dic",file=sys.stderr)
-  from unidic2ud import dictlist
   s="  Dic: ipadic\n"+dictlist().replace(".udpipe","(udpipe)")
   print(s.replace("\n"," ").rstrip(),file=sys.stderr)
   sys.exit()
