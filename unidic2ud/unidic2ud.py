@@ -117,6 +117,72 @@ class UDPipeEntry(object):
     s+=']]></script>\n</svg>\n'
     return s
 
+class UniDic2UDEntry(UDPipeEntry):
+  def to_tree(self,BoxDrawingWidth=1):
+    if not hasattr(self,"_tokens"):
+      return None
+    f=[[] for i in range(len(self))]
+    h=[0]
+    for i in range(1,len(self)):
+      if self[i].deprel=="root":
+        h.append(0)
+        continue
+      j=i+self[i].head.id-self[i].id
+      f[j].append(i)
+      h.append(j) 
+    d=[1 if f[i]==[] and abs(h[i]-i)==1 else -1 if h[i]==0 else 0 for i in range(len(self))]
+    while 0 in d:
+      for i,e in enumerate(d):
+        if e!=0:
+          continue
+        g=[d[j] for j in f[i]]
+        if 0 in g:
+          continue
+        k=h[i]
+        if 0 in [d[j] for j in range(min(i,k)+1,max(i,k))]:
+          continue
+        for j in range(min(i,k)+1,max(i,k)):
+          if j in f[i]:
+            continue
+          g.append(d[j]-1 if j in f[k] else d[j])
+        g.append(0)
+        d[i]=max(g)+1
+    m=max(d)
+    p=[[0]*(m*2) for i in range(len(self))]
+    for i in range(1,len(self)):
+      k=h[i]
+      if k==0:
+        continue
+      j=d[i]*2-1
+      p[min(i,k)][j]|=9
+      p[max(i,k)][j]|=5
+      for l in range(j):
+        p[k][l]|=3
+      for l in range(min(i,k)+1,max(i,k)):
+        p[l][j]|=12
+    u=[" ","\u2574","\u2576","\u2500","\u2575","\u2518","\u2514","\u2534","\u2577","\u2510","\u250C","\u252C","\u2502","\u2524","\u251C","\u253C","<"]
+    v=[t.form for t in self]
+    l=[]
+    for w in v:
+      l.append(len(w)+len([c for c in w if ord(c)>127]))
+    m=max(l)
+    s=""
+    for i in range(1,len(self)):
+      if h[i]>0:
+        j=d[i]*2-2
+        while j>=0:
+          if p[i][j]>0:
+            break
+          p[i][j]|=3
+          j-=1
+        p[i][j+1]=16
+      t="".join(u[j] for j in p[i])
+      if BoxDrawingWidth>1:
+        t=t.replace(" "," "*BoxDrawingWidth).replace("<"," "*(BoxDrawingWidth-1)+"<")
+      s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"\n"
+    return s
+
+
 class UniDic2UD(object):
   def __init__(self,UniDic,UDPipe):
     self.UniDic=UniDic
@@ -162,7 +228,7 @@ class UniDic2UD(object):
       u=self.udpipe(sent).replace("# newdoc\n# newpar\n","")
       if raw:
         return u
-      return UDPipeEntry(u)
+      return UniDic2UDEntry(u)
     f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT" }
     u=""
     for t in sent.split("\n"):
@@ -252,7 +318,7 @@ class UniDic2UD(object):
       u+="\n"
     if raw:
       return self.udpipe(u)
-    return UDPipeEntry(self.udpipe(u))
+    return UniDic2UDEntry(self.udpipe(u))
   def ChamameWebAPI(self,sentence):
     import random,urllib.request,json
     f={ self.dictkey:"UniDic-"+self.UniDic, "st":sentence+"\n\n", "f1":"1", "f3":"1", "f10":"1", "out-e":"csv", "c-code":"utf-8" }

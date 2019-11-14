@@ -31,6 +31,22 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 >>> print(t.id,t.form,t.lemma,t.upos,t.xpos,t.feats,t.head.id,t.deprel,t.deps,t.misc)
 7 欲する 欲する VERB 動詞-一般 _ 8 acl _ SpaceAfter=No|Translit=ホッスル
 
+>>> print(s.to_tree())
+    其 <┐         det
+    國 ─┤<┐       obj
+    を <┘ │       case
+  治め ─┬─┘<┐     advcl
+    ん <┤   │     aux
+    と <┘   │     case
+欲する ─────┘<┐   acl
+    者 ─┬─────┘<┐ nsubj
+    は <┘       │ case
+  先づ <──┐     │ advmod
+    其 <┐ │     │ det
+    家 ─┤<┤     │ obj
+    を <┘ │     │ case
+  齊ふ ───┴─────┘ root
+
 >>> f=open("trial.svg","w")
 >>> f.write(s.to_svg())
 >>> f.close()
@@ -50,7 +66,9 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 * `UniDic="manyo"`: Use [上代（万葉集）UniDic](https://unidic.ninjal.ac.jp/download_all#unidic_manyo).
 * `UniDic=None`: Use `UDPipe` for tokenizer, POS-tagger, lemmatizer, and dependency-parser.
 
-The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 Models](http://hdl.handle.net/11234/1-2998). 
+The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 Models](http://hdl.handle.net/11234/1-2998).
+
+`to_tree()` has an option `to_tree(BoxDrawingWidth=2)` for old terminals, whose Box Drawing characters are "fullwidth".
 
 ## CaboCha emulator usage
 
@@ -58,7 +76,7 @@ The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 
 >>> import unidic2ud.cabocha as CaboCha
 >>> qkana=CaboCha.Parser("qkana")
 >>> s=qkana.parse("其國を治めんと欲する者は先づ其家を齊ふ")
->>> print(s.toString(CaboCha.FORMAT_TREE_LATTICE)) 
+>>> print(s.toString(CaboCha.FORMAT_TREE_LATTICE))
   其-D
   國を-D
 治めんと-D
