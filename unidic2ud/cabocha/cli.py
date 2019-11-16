@@ -13,7 +13,7 @@ def main():
         f=int(sys.argv[i])
       else:
         f=int(sys.argv[i][2:])
-      if f<0 or f>4:
+      if f<0 or f>6:
         usage()
     elif o.startswith("-U"):
       if o=="-U":
@@ -55,7 +55,7 @@ def main():
 class parser(object):
   def __init__(self,UniDic,format):
     self.format=format
-    if format==4:
+    if format>3:
       from unidic2ud import load
       self.parse=load(UniDic)
     else:
@@ -64,6 +64,10 @@ class parser(object):
   def __call__(self,sentence):
     if self.format==4:
       return self.parse(sentence,raw=True)
+    elif self.format==5:
+      return self.parse(sentence).to_tree()
+    elif self.format==6:
+      return self.parse(sentence).to_tree(2)
     return self.parse(sentence).toString(self.format)
 
 def usage():
