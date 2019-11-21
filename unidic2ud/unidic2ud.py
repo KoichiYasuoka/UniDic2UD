@@ -198,17 +198,19 @@ class UniDic2UD(object):
         d={ "gendai":"dic1", "spoken":"dic2", "qkana":"dic3", "kindai":"dic4", "kinsei":"dic5", "kyogen":"dic6", "wakan":"dic7", "wabun":"dic8", "manyo":"dic9" }
         self.dictkey=d[UniDic]
         self.mecab=self.ChamameWebAPI
-    self.model=UDPipe
-    m=os.path.join(DOWNLOAD_DIR,self.model+".udpipe")
-    if os.path.isfile(m):
-      import ufal.udpipe
-      self.model=ufal.udpipe.Model.load(m)
-      if UniDic==None:
-        self.udpipe=ufal.udpipe.Pipeline(self.model,"tokenizer=presegmented","","","").process
-      else:
-        self.udpipe=ufal.udpipe.Pipeline(self.model,"conllu","none","","").process
+    self.udpipe=self.UDPipeWebAPI
+    if UDPipe==None:
+      self.model="japanese-gsd"
     else:
-      self.udpipe=self.UDPipeWebAPI
+      self.model=UDPipe
+      m=os.path.join(DOWNLOAD_DIR,self.model+".udpipe")
+      if os.path.isfile(m):
+        import ufal.udpipe
+        self.model=ufal.udpipe.Model.load(m)
+        if UniDic==None:
+          self.udpipe=ufal.udpipe.Pipeline(self.model,"tokenizer=presegmented","","","").process
+        else:
+          self.udpipe=ufal.udpipe.Pipeline(self.model,"conllu","none","","").process
   def __call__(self,sentence,raw=False):
     sent=sentence
     i=sent.find("\u3099")
