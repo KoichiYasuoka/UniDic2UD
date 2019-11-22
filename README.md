@@ -184,7 +184,8 @@ Use `python3.7` command in Cygwin64 instead of `python`. For installing in old C
 
 ```py
 !pip install unidic2ud
-!udcabocha --download=japanese-gsd
+import unidic2ud
+unidic2ud.download("japanese-gsd")
 ```
 
 ## Author
