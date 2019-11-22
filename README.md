@@ -121,7 +121,10 @@ You can simply use `udcabocha` on the command line:
 ```sh
 echo 其國を治めんと欲する者は先づ其家を齊ふ | udcabocha -U qkana -f 2
 ```
-`-U UniDic` specifies `UniDic` (default is `-U ipadic`). `-f format` specifies the output format in 0 to 4 (default is `-f 0`).
+`-U UniDic` specifies `UniDic` (default is `-U ipadic`). `-f format` specifies the output format in 0 to 4 above (default is `-f 0`) and in 5 to 7 below:
+* `-f 5`: `to_tree()`
+* `-f 6`: `to_tree(BoxDrawingWidth=2)`
+* `-f 7`: `to_svg()`
 
 ## Usage via spaCy
 
