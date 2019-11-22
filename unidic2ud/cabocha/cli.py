@@ -13,7 +13,7 @@ def main():
         f=int(sys.argv[i])
       else:
         f=int(sys.argv[i][2:])
-      if f<0 or f>6:
+      if f<0 or f>7:
         usage()
     elif o.startswith("-U"):
       if o=="-U":
@@ -68,6 +68,8 @@ class parser(object):
       return self.parse(sentence).to_tree()
     elif self.format==6:
       return self.parse(sentence).to_tree(2)
+    elif self.format==7:
+      return self.parse(sentence).to_svg()
     return self.parse(sentence).toString(self.format)
 
 def usage():
