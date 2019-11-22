@@ -118,7 +118,7 @@ class UDPipeEntry(object):
     return s
 
 class UniDic2UDEntry(UDPipeEntry):
-  def to_tree(self,BoxDrawingWidth=1):
+  def to_tree(self,BoxDrawingWidth=1,Japanese=True):
     if not hasattr(self,"_tokens"):
       return None
     f=[[] for i in range(len(self))]
@@ -166,6 +166,11 @@ class UniDic2UDEntry(UDPipeEntry):
     for w in v:
       l.append(len(w)+len([c for c in w if ord(c)>127]))
     m=max(l)
+    if Japanese:
+      import unidic2ud.deprelja
+      r=unidic2ud.deprelja.deprelja
+    else:
+      r={}
     s=""
     for i in range(1,len(self)):
       if h[i]>0:
@@ -179,7 +184,10 @@ class UniDic2UDEntry(UDPipeEntry):
       t="".join(u[j] for j in p[i])
       if BoxDrawingWidth>1:
         t=t.replace(" "," "*BoxDrawingWidth).replace("<"," "*(BoxDrawingWidth-1)+"<")
-      s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"\n"
+      if self[i].deprel in r:
+        s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"("+r[self[i].deprel]+")\n"
+      else:
+        s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"\n"
     return s
 
 
