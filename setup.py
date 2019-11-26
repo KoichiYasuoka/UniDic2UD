@@ -5,7 +5,7 @@ URL="https://github.com/KoichiYasuoka/UniDic2UD"
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.5.0",
+  version="1.5.1",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
@@ -21,6 +21,7 @@ setuptools.setup(
     "unidic2ud":["./*.js"],
   },
   entry_points={
+    "console_scripts":["unidic2ud=unidic2ud.cli:main"],
     "console_scripts":["udcabocha=unidic2ud.cabocha.cli:main"],
   },
   classifiers=[

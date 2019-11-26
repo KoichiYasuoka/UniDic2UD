@@ -68,6 +68,11 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 
 `unidic2ud.UniDic2UDEntry.to_tree()` has an option `to_tree(BoxDrawingWidth=2)` for old terminals, whose Box Drawing characters are "fullwidth".
 
+You can simply use `unidic2ud` on the command line:
+```sh
+echo 其國を治めんと欲する者は先づ其家を齊ふ | unidic2ud -U qkana
+```
+
 ## CaboCha emulator usage
 
 ```py
@@ -179,7 +184,7 @@ For installing in [Cygwin64](https://www.cygwin.com/install.html), make sure to 
 ```sh
 pip3.7 install git+https://github.com/KoichiYasuoka/mecab-cygwin64
 pip3.7 install unidic2ud
-udcabocha --download=japanese-gsd
+unidic2ud --download=japanese-gsd
 ```
 Use `python3.7` command in Cygwin64 instead of `python`. For installing in old Cygwin (32-bit), try to use [mecab-cygwin32](https://github.com/KoichiYasuoka/mecab-cygwin32) instead of [mecab-cygwin64](https://github.com/KoichiYasuoka/mecab-cygwin64).
 
