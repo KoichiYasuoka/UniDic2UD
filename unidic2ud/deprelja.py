@@ -36,6 +36,7 @@ deprelja = {
   "list":"細目",
   "parataxis":"隣接表現",
   "orphan":"親なし",
+  "appos":"同格",
   "punct":"句読点",
   "root":"親"
 }

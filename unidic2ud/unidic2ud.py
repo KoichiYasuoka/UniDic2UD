@@ -186,6 +186,12 @@ class UniDic2UDEntry(UDPipeEntry):
         t=t.replace(" "," "*BoxDrawingWidth).replace("<"," "*(BoxDrawingWidth-1)+"<")
       if self[i].deprel in r:
         s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"("+r[self[i].deprel]+")\n"
+      elif self[i].deprel.find(":")>0:
+        j=self[i].deprel.split(":")
+        if j[0] in r:
+          s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"("+r[j[0]]+"["+j[1]+"])\n"
+        else:
+          s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"\n"
       else:
         s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"\n"
     return s
