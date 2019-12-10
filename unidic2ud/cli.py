@@ -71,8 +71,8 @@ def usage():
   from pkg_resources import get_distribution
   print("Unidic2UD Version "+get_distribution("unidic2ud").version,file=sys.stderr)
   print("Usage: unidic2ud -U Dict [-u|-t|-t2] file",file=sys.stderr)
-  print("       unidic2ud --download=Dic",file=sys.stderr)
-  s="  Dic: ipadic\n"+unidic2ud.dictlist().replace(".udpipe","(udpipe)")
+  print("       unidic2ud --download=Dict",file=sys.stderr)
+  s=" Dict: ipadic\n"+unidic2ud.dictlist().replace(".udpipe","(udpipe)")
   print(s.replace("\n"," ").rstrip(),file=sys.stderr)
   sys.exit()
 
