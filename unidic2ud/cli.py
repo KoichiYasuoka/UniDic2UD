@@ -37,14 +37,20 @@ def main():
       break
     i+=1
   else:
-    nlp=unidic2ud.load(d,"japanese-gsd")
+    if d.find("-")>0:
+      nlp=unidic2ud.load(None,d)
+    else:
+      nlp=unidic2ud.load(d,"japanese-gsd")
     while True:
       try:
         s=input()
       except:
         return
       print(output(nlp,optu,optt,w,s),end="")
-  nlp=unidic2ud.load(d,"japanese-gsd")
+  if d.find("-")>0:
+    nlp=unidic2ud.load(None,d)
+  else:
+    nlp=unidic2ud.load(d,"japanese-gsd")
   while i<argc:
     f=open(sys.argv[i],"r",encoding="utf-8")
     s=f.read()
