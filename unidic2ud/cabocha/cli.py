@@ -76,7 +76,7 @@ def usage():
   from pkg_resources import get_distribution
   from unidic2ud import dictlist
   print("UniDic2UD Version "+get_distribution("unidic2ud").version,file=sys.stderr)
-  print("Usage: udcabocha -U Dict [-f 0-4] file",file=sys.stderr)
+  print("Usage: udcabocha -U Dict [-f 0-6] file",file=sys.stderr)
   print("       udcabocha --download=Dict",file=sys.stderr)
   s=" Dict: ipadic\n"+dictlist().replace(".udpipe","(udpipe)")
   print(s.replace("\n"," ").rstrip(),file=sys.stderr)
