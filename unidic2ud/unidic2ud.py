@@ -326,7 +326,7 @@ class UniDic2UD(object):
         elif x[0]=="接尾辞":
           upos="NOUN" if x[1]=="名詞的" else "PART"
         elif x[0]=="記号":
-          upos="PUNCT" if x[1]=="句点" or x[1]=="読点" else "SYM"
+          upos="PUNCT" if x[1] in {"句点","読点","括弧開","括弧閉"} else "SYM"
         elif x[0] in f:
           upos=f[x[0]]
         misc="SpaceAfter=No" if translit=="" else "SpaceAfter=No|Translit="+translit
