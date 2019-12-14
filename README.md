@@ -202,5 +202,5 @@ Koichi Yasuoka (安岡孝一)
 
 ## References
 
-* 安岡孝一: 漢日英Universal Dependencies平行コーパスとその差異, 人文科学とコンピュータシンポジウム「じんもんこん2019」論文集 (2019年12月).
-* Koichi Yasuoka: Universal Dependencies Parallel Corpora on Classical Chinese, Modern Japanese, and Modern English. Jinmoncom 2019: IPSJ Symposium Series, Vol.2019 (December 2019).
+* 安岡孝一: 漢日英Universal Dependencies平行コーパスとその差異, 人文科学とコンピュータシンポジウム「じんもんこん2019」論文集 (2019年12月), pp.43-50.
+* Koichi Yasuoka: Universal Dependencies Parallel Corpora on Classical Chinese, Modern Japanese, and Modern English. Jinmoncom 2019: IPSJ Symposium Series, Vol.2019, No.1 (December 2019), pp.43-50.
