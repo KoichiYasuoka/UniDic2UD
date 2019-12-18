@@ -164,7 +164,7 @@ class UniDic2UDEntry(UDPipeEntry):
     v=[t.form for t in self]
     l=[]
     for w in v:
-      l.append(len(w)+len([c for c in w if ord(c)>127]))
+      l.append(len(w)+len([c for c in w if ord(c)>12287]))
     m=max(l)
     if Japanese:
       import unidic2ud.deprelja
