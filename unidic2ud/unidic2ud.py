@@ -200,13 +200,13 @@ class UniDic2UDEntry(UDPipeEntry):
 class UniDic2UD(object):
   def __init__(self,UniDic,UDPipe):
     self.UniDic=UniDic
-    if UniDic=="ipadic":
-      import MeCab
-      self.mecab=MeCab.Tagger().parse
-    elif UniDic!=None:
+    if UniDic!=None:
       d=os.path.join(DOWNLOAD_DIR,UniDic)
       if os.path.isdir(d):
-        import MeCab
+        try:
+          import fugashi as MeCab
+        except:
+          import MeCab
         self.mecab=MeCab.Tagger("-d "+d).parse
       else:
         d={ "gendai":"dic1", "spoken":"dic2", "qkana":"dic3", "kindai":"dic4", "kinsei":"dic5", "kyogen":"dic6", "wakan":"dic7", "wabun":"dic8", "manyo":"dic9" }
