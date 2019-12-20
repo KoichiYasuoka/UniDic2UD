@@ -165,7 +165,7 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 
 ## Installation for Linux
 
-Binary wheel is available for Linux, and is installed by default when you use `pip`:
+Tar-ball is available for Linux, and is installed by default when you use `pip`:
 ```sh
 pip install unidic2ud
 ```
@@ -180,7 +180,7 @@ Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`;
 
 ## Installation for Cygwin64
 
-For installing in [Cygwin64](https://www.cygwin.com/install.html), make sure to get `gcc-g++` `git` `python37-pip` `python37-devel` `swig` packages, and then:
+For installing in [Cygwin64](https://www.cygwin.com/install.html), make sure to get `gcc-g++` `git` `python37-pip` `python37-devel` `python37-cython` packages, and then:
 ```sh
 pip3.7 install git+https://github.com/KoichiYasuoka/mecab-cygwin64
 pip3.7 install unidic2ud
