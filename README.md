@@ -165,7 +165,7 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 
 ## Installation for Linux
 
-Tar-ball is available for Linux, and is installed by default when you use `pip`:
+Tar-ball is available for Linux, and is installed by default when you use `pip` (>=10.0.1):
 ```sh
 pip install unidic2ud
 ```
