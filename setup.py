@@ -5,14 +5,19 @@ URL="https://github.com/KoichiYasuoka/UniDic2UD"
 
 import subprocess
 try:
+  d=subprocess.check_output(["swig","-version"])
+  install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996","pip>=10.0.1"]
+except:
+  install_requires=["ufal.udpipe>=1.2.0","mecab-python3==0.996.2","pip>=10.0.1"]
+try:
   d=subprocess.check_output(["mecab-config","--libs-only-L"])
   install_requires=["ufal.udpipe>=1.2.0","fugashi>=0.1.6","pip>=10.0.1"]
 except:
-  install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996","pip>=10.0.1"]
+  pass
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.6.4",
+  version="1.6.5",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
