@@ -23,8 +23,12 @@ UDPIPE_VERSION="ud-2.4-190531"
 def download(model,option=None):
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
   import logging
-  logging.getLogger("pip._internal.download").setLevel(level=logging.INFO)
-  from pip._internal.models.link import Link
+  try:
+    from pip._internal.models.link import Link
+    logging.getLogger("pip._internal.download").setLevel(level=logging.INFO)
+  except:
+    from pip.index import Link
+    logging.getLogger("pip.download").setLevel(level=logging.INFO)
   if option=="unidic":
     u=UNIDIC_URLS[model]
   elif option=="udpipe":
@@ -35,11 +39,18 @@ def download(model,option=None):
     except:
       u=False
   if u:
-    from pip._internal.download import unpack_url
+    try:
+      from pip._internal.download import unpack_url
+    except:
+      from pip.download import unpack_url
     unpack_url(Link(u),os.path.join(DOWNLOAD_DIR,model))
   else:
-    from pip._internal.download import PipSession,_download_http_url
-    _download_http_url(Link(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe"),PipSession(),DOWNLOAD_DIR,None,"on")
+    try:
+      from pip._internal.download import PipSession,_download_http_url
+      _download_http_url(Link(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe"),PipSession(),DOWNLOAD_DIR,None,"on")
+    except:
+      from pip.download import PipSession,_download_http_url
+      _download_http_url(Link(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe"),PipSession(),DOWNLOAD_DIR,None)
     os.rename(os.path.join(DOWNLOAD_DIR,model+"-"+UDPIPE_VERSION+".udpipe"),os.path.join(DOWNLOAD_DIR,model+".udpipe"))
 
 def dictlist():
