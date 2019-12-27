@@ -11,13 +11,13 @@ except:
   install_requires=["ufal.udpipe>=1.2.0","mecab-python3==0.996.2"]
 try:
   d=subprocess.check_output(["mecab-config","--libs-only-L"])
-  install_requires=["ufal.udpipe>=1.2.0","fugashi>=0.1.6"]
+  install_requires=["ufal.udpipe>=1.2.0","fugashi>=0.1.8"]
 except:
   pass
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.6.6",
+  version="1.6.7",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
