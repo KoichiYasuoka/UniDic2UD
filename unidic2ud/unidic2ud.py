@@ -215,13 +215,10 @@ class UniDic2UD(object):
       d=os.path.join(DOWNLOAD_DIR,UniDic)
       if os.path.isdir(d):
         try:
-          import fugashi as MeCab
+          from fugashi import GenericTagger as Tagger
         except:
-          import MeCab
-        try:
-          self.mecab=MeCab.Tagger("-d "+d).parse
-        except:
-          self.mecab=MeCab.GenericTagger("-d "+d).parse
+          from MeCab import Tagger
+        self.mecab=Tagger("-d "+d).parse
       else:
         d={ "gendai":"dic1", "spoken":"dic2", "qkana":"dic3", "kindai":"dic4", "kinsei":"dic5", "kyogen":"dic6", "wakan":"dic7", "wabun":"dic8", "manyo":"dic9" }
         self.dictkey=d[UniDic]

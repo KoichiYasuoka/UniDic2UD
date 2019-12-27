@@ -17,7 +17,7 @@ except:
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.6.7",
+  version="1.6.8",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
