@@ -191,10 +191,7 @@ Use `python3.7` command in Cygwin64 instead of `python`. For installing in old C
 ## Installation for Jupyter Notebook (Google Colaboratory)
 
 ```py
-!apt-get install -y libmecab-dev
 !pip install unidic2ud
-import unidic2ud
-unidic2ud.download("japanese-gsd")
 ```
 
 ## Author
