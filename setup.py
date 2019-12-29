@@ -2,7 +2,7 @@ import setuptools
 import subprocess
 import os
 
-with open("README.md","r") as r:
+with open("README.md","r",encoding="utf-8") as r:
   long_description=r.read()
 URL="https://github.com/KoichiYasuoka/UniDic2UD"
 
@@ -23,7 +23,7 @@ else:
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.7.1",
+  version="1.7.2",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
