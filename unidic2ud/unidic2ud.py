@@ -54,9 +54,17 @@ def download(model,option=None):
     os.rename(os.path.join(DOWNLOAD_DIR,model+"-"+UDPIPE_VERSION+".udpipe"),os.path.join(DOWNLOAD_DIR,model+".udpipe"))
 
 def dictlist():
-  import subprocess
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
-  return subprocess.check_output(["/bin/ls","-1tr",DOWNLOAD_DIR]).decode("utf-8") 
+  try:
+    import subprocess
+    d=subprocess.check_output(["/bin/ls","-1tr",DOWNLOAD_DIR]).decode("utf-8") 
+  except:
+    import glob
+    cwd=os.getcwd()
+    os.chdir(DOWNLOAD_DIR)
+    d="\n".join(glob.glob("*"))+"\n"
+    os.chdir(cwd)
+  return d
 
 class UDPipeEntry(object):
   def __init__(self,result):
