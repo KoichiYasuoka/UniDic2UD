@@ -11,11 +11,13 @@ pl=platform.platform()
 if pl.startswith("CYGWIN"):
   install_requires=["ufal.udpipe>=1.2.0","mecab-cygwin>=0.5.0"]
 else:
+  import sys
+  useFugashi=(sys.version_info.major==3)and(sys.version_info.minor>6)
   try:
     d=subprocess.check_output(["mecab-config","--libs-only-L"])
-    useFugashi=True
   except:
-    useFugashi=(os.name=="nt")
+    import os
+    useFugashi&=(os.name=="nt")
   if useFugashi:
     install_requires=["ufal.udpipe>=1.2.0.3","fugashi>=0.1.8"]
   else:
@@ -27,7 +29,7 @@ else:
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.7.7",
+  version="1.7.8",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
