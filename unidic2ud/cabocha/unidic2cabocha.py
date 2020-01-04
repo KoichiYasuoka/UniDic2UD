@@ -43,6 +43,10 @@ class Tree(unidic2ud.UDPipeEntry):
           elif d=="advcl" or d=="obl":
             if self[i].head.id-id==1 and self[i].upos!="ADJ":
               x=id+1
+      elif self[i].upos=="PUNCT":
+        c.append(i)
+        s.append(c)
+        c=[]
       else:
         c.append(i)
     if c!=[]:
