@@ -387,7 +387,7 @@ class UniDic2UD(object):
       u+=json.loads(q)["result"]
     return u
 
-def load(UniDic=None,UDPipe="japanese-gsd"):
+def load(UniDic=None,UDPipe="japanese-modern"):
   if UniDic==UDPipe:
     UniDic=None
   return UniDic2UD(UniDic,UDPipe)

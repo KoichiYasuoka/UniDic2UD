@@ -215,8 +215,8 @@ class UniDic2CaboCha(object):
     self._parser=parser
 
 class Parser(object):
-  def __init__(self,UniDic="ipadic"):
-    self.UniDic2UD=unidic2ud.UniDic2UD(UniDic,"japanese-gsd")
+  def __init__(self,UniDic=None):
+    self.UniDic2UD=unidic2ud.UniDic2UD(UniDic,UDPipe="japanese-modern")
   def parse(self,sentence):
     t=Tree(self.UniDic2UD(sentence,raw=True))
     t._cabocha=UniDic2CaboCha(self)

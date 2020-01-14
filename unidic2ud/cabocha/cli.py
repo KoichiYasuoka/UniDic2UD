@@ -4,7 +4,7 @@ def main():
   argc=len(sys.argv)
   i=1
   f=0
-  u="ipadic"
+  u=None
   while i<argc:
     o=sys.argv[i]
     if o.startswith("-f"):

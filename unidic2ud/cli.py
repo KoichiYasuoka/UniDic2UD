@@ -3,7 +3,7 @@ import unidic2ud
 
 def main():
   argc=len(sys.argv)
-  d="ipadic"
+  d="japanese-modern"
   optu=optt=False
   i=w=1
   while i<argc:
@@ -40,7 +40,7 @@ def main():
     if d.find("-")>0:
       nlp=unidic2ud.load(None,d)
     else:
-      nlp=unidic2ud.load(d,"japanese-gsd")
+      nlp=unidic2ud.load(d)
     while True:
       try:
         s=input()
@@ -50,7 +50,7 @@ def main():
   if d.find("-")>0:
     nlp=unidic2ud.load(None,d)
   else:
-    nlp=unidic2ud.load(d,"japanese-gsd")
+    nlp=unidic2ud.load(d)
   while i<argc:
     f=open(sys.argv[i],"r",encoding="utf-8")
     s=f.read()
