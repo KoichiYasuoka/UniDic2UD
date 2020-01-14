@@ -29,7 +29,7 @@ else:
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.8.1",
+  version="1.8.2",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
@@ -42,7 +42,7 @@ setuptools.setup(
   install_requires=install_requires,
   python_requires=">=3.6",
   package_data={
-    "unidic2ud":["./*.js","./download/*.udpipe","./download/ipadic/*"],
+    "unidic2ud":["./*.js","./download/*.udpipe"],
   },
   entry_points={
     "console_scripts":[
