@@ -29,7 +29,7 @@ else:
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.8.3",
+  version="1.8.4",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
@@ -58,6 +58,7 @@ setuptools.setup(
     "Natural Language :: Japanese",
   ],
   project_urls={
+    "japanese-modern":"https://github.com/UniversalDependencies/UD_Japanese-Modern",
     "ud-ja-kanbun":"https://corpus.kanji.zinbun.kyoto-u.ac.jp/gitlab/Kanbun/ud-ja-kanbun",
     "Source":URL,
     "Tracker":URL+"/issues",
