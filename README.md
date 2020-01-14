@@ -115,7 +115,7 @@ EOS
 齊ふ	動詞,一般,*,*,*,*,整える,トトノフ,*,VERB	14<-root
 EOS
 ```
-`CaboCha.Parser(UniDic)` is an alias for `unidic2ud.load(UniDic,UDPipe="japanese-modern")`, and its default is `None`. `CaboCha.Tree.toString(format)` has five available formats:
+`CaboCha.Parser(UniDic)` is an alias for `unidic2ud.load(UniDic,UDPipe="japanese-modern")`, and its default is `UniDic=None`. `CaboCha.Tree.toString(format)` has five available formats:
 * `CaboCha.FORMAT_TREE`: tree (numbered as 0)
 * `CaboCha.FORMAT_LATTICE`: lattice (numbered as 1)
 * `CaboCha.FORMAT_TREE_LATTICE`: tree + lattice (numbered as 2)
