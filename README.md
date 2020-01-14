@@ -170,9 +170,9 @@ Tar-ball is available for Linux, and is installed by default when you use `pip`:
 pip install unidic2ud
 ```
 
-By default installation, `UniDic` and `UDPipe` are invoked through Web APIs. If you want to invoke them locally and faster, you can download `UniDic` and `UDPipe` which you use just as follows:
+By default installation, `UniDic` is invoked through Web APIs. If you want to invoke them locally and faster, you can download `UniDic` which you use just as follows:
 ```sh
-python -m unidic2ud download.unidic qkana
+python -m unidic2ud download qkana
 python -m unidic2ud dictlist
 ```
 Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`; CC BY-NC-SA 4.0 for others.
