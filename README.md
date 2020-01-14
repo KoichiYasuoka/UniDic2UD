@@ -53,7 +53,7 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 ```
 ![trial.svg](https://raw.githubusercontent.com/KoichiYasuoka/UniDic2UD/master/trial.png)
 
-`unidic2ud.load(UniDic,UDPipe)` loads a natural language processor pipeline, which uses `UniDic` for tokenizer POS-tagger and lemmatizer, then uses `UDPipe` for dependency-parser. The default `UDPipe` is `UDPipe="japanese-gsd"` from [Universal Dependecies 2.4 Models](http://hdl.handle.net/11234/1-2998). Available `UniDic` options are:
+`unidic2ud.load(UniDic,UDPipe)` loads a natural language processor pipeline, which uses `UniDic` for tokenizer POS-tagger and lemmatizer, then uses `UDPipe` for dependency-parser. The default `UDPipe` is `UDPipe="japanese-modern"`. Available `UniDic` options are:
 
 * `UniDic="gendai"`: Use [現代書き言葉UniDic](https://unidic.ninjal.ac.jp/download#unidic_bccwj).
 * `UniDic="spoken"`: Use [現代話し言葉UniDic](https://unidic.ninjal.ac.jp/download#unidic_csj).
@@ -115,7 +115,7 @@ EOS
 齊ふ	動詞,一般,*,*,*,*,整える,トトノフ,*,VERB	14<-root
 EOS
 ```
-`CaboCha.Parser(UniDic)` is an alias for `unidic2ud.load(UniDic,UDPipe="japanese-gsd")`, and its default is "ipadic". `CaboCha.Tree.toString(format)` has five available formats:
+`CaboCha.Parser(UniDic)` is an alias for `unidic2ud.load(UniDic,UDPipe="japanese-modern")`, and its default is `None`. `CaboCha.Tree.toString(format)` has five available formats:
 * `CaboCha.FORMAT_TREE`: tree (numbered as 0)
 * `CaboCha.FORMAT_LATTICE`: lattice (numbered as 1)
 * `CaboCha.FORMAT_TREE_LATTICE`: tree + lattice (numbered as 2)
@@ -126,7 +126,7 @@ You can simply use `udcabocha` on the command line:
 ```sh
 echo 其國を治めんと欲する者は先づ其家を齊ふ | udcabocha -U qkana -f 2
 ```
-`-U UniDic` specifies `UniDic` (default is `-U ipadic`). `-f format` specifies the output format in 0 to 4 above (default is `-f 0`) and in 5 to 7 below:
+`-U UniDic` specifies `UniDic`. `-f format` specifies the output format in 0 to 4 above (default is `-f 0`) and in 5 to 7 below:
 * `-f 5`: `to_tree()`
 * `-f 6`: `to_tree(BoxDrawingWidth=2)`
 * `-f 7`: `to_svg()`
@@ -173,10 +173,9 @@ pip install unidic2ud
 By default installation, `UniDic` and `UDPipe` are invoked through Web APIs. If you want to invoke them locally and faster, you can download `UniDic` and `UDPipe` which you use just as follows:
 ```sh
 python -m unidic2ud download.unidic qkana
-python -m unidic2ud download.udpipe japanese-gsd
 python -m unidic2ud dictlist
 ```
-Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`; CC BY-SA 4.0 for `japanese-gsd`; CC BY-NC-SA 4.0 for others.
+Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`; CC BY-NC-SA 4.0 for others.
 
 ## Installation for Cygwin
 
