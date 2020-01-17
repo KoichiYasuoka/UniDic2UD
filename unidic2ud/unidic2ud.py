@@ -20,6 +20,9 @@ UNIDIC_URLS={
 UDPIPE_URL="https://lindat.mff.cuni.cz/repository/xmlui/bitstream/handle/11234/1-2998/"
 UDPIPE_VERSION="ud-2.4-190531"
 
+import ssl
+ssl._create_default_https_context=ssl._create_unverified_context
+
 def download(model,option=None):
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
   import logging
