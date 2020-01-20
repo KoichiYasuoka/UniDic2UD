@@ -18,9 +18,9 @@ class UniDicLanguage(Language):
     self._meta = {
       "author":"Koichi Yasuoka",
       "description":"derived from UniDic2UD",
-      "lang":"UniDic_"+UniDic if UniDic!=None else "udpipe_ja-gsd",
+      "lang":"UniDic_"+UniDic if UniDic!=None else "udpipe_ja-modern",
       "license":"MIT",
-      "name":UniDic if UniDic!=None else "ja-gsd",
+      "name":UniDic if UniDic!=None else "ja-modern",
       "parent_package":"spacy_unidic",
       "pipeline":"Tokenizer, POS-Tagger, Parser",
       "spacy_version":">=2.1.0"
@@ -75,7 +75,7 @@ class UniDicTokenizer(object):
     doc.is_parsed=True
     return doc
 
-def load(UniDic=None,UDPipe="japanese-gsd"):
+def load(UniDic=None,UDPipe="japanese-modern"):
   if UniDic==UDPipe:
     UniDic=None
   return UniDicLanguage(UniDic,UDPipe)
