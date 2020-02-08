@@ -60,7 +60,7 @@ def dictlist():
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
   try:
     import subprocess
-    d=subprocess.check_output(["/bin/ls","-1tr",DOWNLOAD_DIR]).decode("utf-8") 
+    d=subprocess.check_output(["/bin/ls","-1tr",DOWNLOAD_DIR]).decode("utf-8")
   except:
     import glob
     cwd=os.getcwd()
@@ -151,7 +151,7 @@ class UniDic2UDEntry(UDPipeEntry):
         continue
       j=i+self[i].head.id-self[i].id
       f[j].append(i)
-      h.append(j) 
+      h.append(j)
     d=[1 if f[i]==[] and abs(h[i]-i)==1 else -1 if h[i]==0 else 0 for i in range(len(self))]
     while 0 in d:
       for i,e in enumerate(d):
@@ -270,12 +270,12 @@ class UniDic2UD(object):
       if raw:
         return u
       return UniDic2UDEntry(u)
-    f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "動詞":"VERB", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT" }
+    f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT" }
     u=""
     for t in sent.split("\n"):
       u+="# text = "+t+"\n"
       v=t
-      misc=""
+      misc=lastxpos=""
       id=0
       for s in self.mecab(t).split("\n"):
         i=s.find("\t")
@@ -337,17 +337,25 @@ class UniDic2UD(object):
         if x[0]=="名詞":
           upos="NOUN"
           if x[1]=="固有名詞":
-            upos="PROPN" 
+            upos="PROPN"
           elif x[1]=="数詞" or x[1]=="数":
             upos="NUM"
           elif x[1]=="代名詞":
             upos="PRON"
+        elif x[0]=="動詞":
+          upos="VERB"
+          if x[1]=="非自立可能":
+            if lastxpos.endswith("-サ変可能"):
+              t="\tNOUN\t"+lastxpos+"\t_\t_\t_\t_\t"+misc+"\n"
+              if u.endswith(t):
+                u=u[0:-len(t)]+"\tVERB\t"+u[6-len(t):]
+                upos="AUX"
         elif x[0]=="助詞":
           upos="ADP"
           if x[1]=="接続助詞":
             upos="SCONJ" if lemma=="て" else "CCONJ"
           elif x[1]=="終助詞":
-            upos="PART" 
+            upos="PART"
         elif x[0]=="接尾辞":
           upos="NOUN" if x[1]=="名詞的" else "PART"
         elif x[0]=="記号":
@@ -356,6 +364,7 @@ class UniDic2UD(object):
           upos=f[x[0]]
         misc="SpaceAfter=No" if translit=="" else "SpaceAfter=No|Translit="+translit
         u+="\t".join([str(id),form,lemma,upos,xpos,"_","_","_","_",misc])+"\n"
+        lastxpos=xpos
       u+="\n"
     if raw:
       return self.udpipe(u)
