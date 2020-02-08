@@ -270,12 +270,12 @@ class UniDic2UD(object):
       if raw:
         return u
       return UniDic2UDEntry(u)
-    f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "助動詞":"AUX", "接続詞":"CCONJ", "補助記号":"PUNCT" }
+    f={ "接頭辞":"NOUN", "接頭詞":"NOUN", "代名詞":"PRON", "連体詞":"DET", "形容詞":"ADJ", "形状詞":"ADJ", "副詞":"ADV", "感動詞":"INTJ", "フィラー":"INTJ", "接続詞":"CCONJ", "補助記号":"PUNCT" }
     u=""
     for t in sent.split("\n"):
       u+="# text = "+t+"\n"
       v=t
-      misc=lastxpos=""
+      misc=lxpos=""
       id=0
       for s in self.mecab(t).split("\n"):
         i=s.find("\t")
@@ -345,11 +345,17 @@ class UniDic2UD(object):
         elif x[0]=="動詞":
           upos="VERB"
           if x[1]=="非自立可能":
-            if lastxpos.endswith("-サ変可能"):
-              t="\tNOUN\t"+lastxpos+"\t_\t_\t_\t_\t"+misc+"\n"
+            if lxpos.endswith("-サ変可能") or lxpos.endswith("-サ変形状詞可能"):
+              t="\tNOUN\t"+lxpos+"\t_\t_\t_\t_\t"+misc+"\n"
               if u.endswith(t):
                 u=u[0:-len(t)]+"\tVERB\t"+u[6-len(t):]
                 upos="AUX"
+        elif x[0]=="助動詞":
+          upos="AUX"
+          if lxpos.endswith("形状詞可能"):
+            t="\tNOUN\t"+lxpos+"\t_\t_\t_\t_\t"+misc+"\n"
+            if u.endswith(t):
+              u=u[0:-len(t)]+"\tADJ\t"+u[6-len(t):]
         elif x[0]=="助詞":
           upos="ADP"
           if x[1]=="接続助詞":
@@ -364,7 +370,7 @@ class UniDic2UD(object):
           upos=f[x[0]]
         misc="SpaceAfter=No" if translit=="" else "SpaceAfter=No|Translit="+translit
         u+="\t".join([str(id),form,lemma,upos,xpos,"_","_","_","_",misc])+"\n"
-        lastxpos=xpos
+        lxpos=xpos
       u+="\n"
     if raw:
       return self.udpipe(u)
