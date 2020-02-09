@@ -17,8 +17,8 @@ UNIDIC_URLS={
   "wabun":UNIDIC_URL+"wabun/1603/UniDic-wabun_1603.zip",
   "manyo":UNIDIC_URL+"manyo/1603/UniDic-manyo_1603.zip"
 }
-UDPIPE_URL="https://lindat.mff.cuni.cz/repository/xmlui/bitstream/handle/11234/1-2998/"
-UDPIPE_VERSION="ud-2.4-190531"
+UDPIPE_URL="https://lindat.mff.cuni.cz/repository/xmlui/bitstream/handle/11234/1-3131/"
+UDPIPE_VERSION="ud-2.5-191206"
 
 import ssl
 ssl._create_default_https_context=ssl._create_unverified_context
