@@ -81,7 +81,7 @@ class Tree(unidic2ud.UDPipeEntry):
           w+=self[t].form
           if self[t].misc.find("SpaceAfter=No")<0:
             w+=" "
-        cf.append((i,z,c[0]-1,y,j,w,k))
+        cf.append((i,z,c[0]-1,y,j,w.rstrip(),k))
         k+=1
       self._cabocha._chunkinfo.append(cf)
   def _makeFeatures(self):
