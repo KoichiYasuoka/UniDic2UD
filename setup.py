@@ -21,15 +21,11 @@ else:
   if useFugashi:
     install_requires=["ufal.udpipe>=1.2.0.3","fugashi>=0.1.8"]
   else:
-    from pkg_resources import get_distribution
-    if pl.startswith("Linux") and int(get_distribution("pip").version.split(".")[0])<19:
-      install_requires=["ufal.udpipe>=1.2.0","mecab-cygwin>=0.5.0"]
-    else:
-      install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996.3"]
+    install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996.5"]
 
 setuptools.setup(
   name="unidic2ud",
-  version="1.9.5",
+  version="1.9.6",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
