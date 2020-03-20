@@ -23,15 +23,19 @@ UDPIPE_VERSION="ud-2.5-191206"
 import ssl
 ssl._create_default_https_context=ssl._create_unverified_context
 
+def progress(block_count,block_size,total_size):
+  p=100.0*block_count*block_size/total_size
+  if p>100:
+    p=100
+  b=int(p/2)
+  if b==50:
+    s="="*50
+  else:
+    s=("="*b)+">"+(" "*(49-b))
+  print(" ["+s+"] "+str(int(p))+"%",end="\r")
+
 def download(model,option=None):
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
-  import logging
-  try:
-    from pip._internal.models.link import Link
-    logging.getLogger("pip._internal.download").setLevel(level=logging.INFO)
-  except:
-    from pip.index import Link
-    logging.getLogger("pip.download").setLevel(level=logging.INFO)
   if option=="unidic":
     u=UNIDIC_URLS[model]
   elif option=="udpipe":
@@ -42,19 +46,21 @@ def download(model,option=None):
     except:
       u=False
   if u:
-    try:
-      from pip._internal.download import unpack_url
-    except:
-      from pip.download import unpack_url
-    unpack_url(Link(u),os.path.join(DOWNLOAD_DIR,model))
+    import urllib.request,zipfile,glob
+    f,h=urllib.request.urlretrieve(u,reporthook=progress)
+    p=os.path.join(DOWNLOAD_DIR,".temporary")
+    with zipfile.ZipFile(f) as z:
+      z.extractall(p)
+    g=glob.glob(os.path.join(p,"*"))
+    if len(g)==1:
+      os.rename(g[0],os.path.join(DOWNLOAD_DIR,model))
+      os.rmdir(p)
+    else:
+      os.rename(p,os.path.join(DOWNLOAD_DIR,model))
   else:
-    try:
-      from pip._internal.download import PipSession,_download_http_url
-      _download_http_url(Link(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe"),PipSession(),DOWNLOAD_DIR,None,"on")
-    except:
-      from pip.download import PipSession,_download_http_url
-      _download_http_url(Link(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe"),PipSession(),DOWNLOAD_DIR,None)
-    os.rename(os.path.join(DOWNLOAD_DIR,model+"-"+UDPIPE_VERSION+".udpipe"),os.path.join(DOWNLOAD_DIR,model+".udpipe"))
+    import urllib.request
+    f,h=urllib.request.urlretrieve(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe",filename=os.path.join(DOWNLOAD_DIR,model+".udpipe"),reporthook=progress)
+  print('')
 
 def dictlist():
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
