@@ -8,7 +8,7 @@ DOWNLOAD_DIR=os.path.join(PACKAGE_DIR,"download")
 UNIDIC_URL="https://unidic.ninjal.ac.jp/unidic_archive/"
 UNIDIC_URLS={
   "gendai":UNIDIC_URL+"cwj/2.3.0/unidic-cwj-2.3.0.zip",
-  "spoken":UNIDIC_URL+"csj/3.0.1/unidic-csj-3.0.1.zip",
+  "spoken":UNIDIC_URL+"csj/3.0.1.1/unidic-csj-3.0.1.1.zip",
   "qkana":UNIDIC_URL+"qkana/1603/UniDic-qkana_1603.zip",
   "kindai":UNIDIC_URL+"kindai/1603/UniDic-kindai_1603.zip",
   "kinsei":UNIDIC_URL+"kinsei/1603/UniDic-kinsei_1603.zip",
