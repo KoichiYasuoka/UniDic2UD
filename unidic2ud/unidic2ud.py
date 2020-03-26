@@ -30,7 +30,7 @@ def progress(block_count,block_size,total_size):
   p=100.0*block_count*block_size/total_size
   if p<1:
     t=-1
-  elif p>100:
+  elif p>=100:
     p=100
     t-=tm
   else:
