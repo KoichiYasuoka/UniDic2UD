@@ -4,6 +4,8 @@
 import os
 PACKAGE_DIR=os.path.abspath(os.path.dirname(__file__))
 DOWNLOAD_DIR=os.path.join(PACKAGE_DIR,"download")
+import time
+tm=time.time()
 
 UNIDIC_URL="https://unidic.ninjal.ac.jp/unidic_archive/"
 UNIDIC_URLS={
@@ -24,15 +26,29 @@ import ssl
 ssl._create_default_https_context=ssl._create_unverified_context
 
 def progress(block_count,block_size,total_size):
+  t=time.time()
   p=100.0*block_count*block_size/total_size
-  if p>100:
+  if p<1:
+    t=-1
+  elif p>100:
     p=100
+    t-=tm
+  else:
+    t=(t-tm)*(100-p)/p
   b=int(p/2)
   if b==50:
     s="="*50
   else:
     s=("="*b)+">"+(" "*(49-b))
-  print(" ["+s+"] "+str(int(p))+"%",end="\r")
+  if t<0:
+    u="   "
+  elif t<3600:
+    u=time.strftime("%M:%S   ",time.gmtime(t))
+  elif t<86400:
+    u=time.strftime("%H:%M:%S   ",time.gmtime(t))
+  else:
+    u=time.strftime("%d+%H:%M:%S   ",time.gmtime(t))
+  print(" ["+s+"] "+str(int(p))+"% "+u,end="\r")
 
 def download(model,option=None):
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
@@ -45,6 +61,7 @@ def download(model,option=None):
       u=UNIDIC_URLS[model]
     except:
       u=False
+  tm=time.time()
   if u:
     import urllib.request,zipfile,glob
     f,h=urllib.request.urlretrieve(u,reporthook=progress)
