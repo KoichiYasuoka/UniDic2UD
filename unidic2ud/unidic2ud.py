@@ -48,7 +48,7 @@ def progress(block_count,block_size,total_size):
     u=time.strftime("%H:%M:%S   ",time.gmtime(t))
   else:
     u=time.strftime("%d+%H:%M:%S   ",time.gmtime(t))
-  print(" ["+s+"] "+str(int(p))+"% "+u,end="\r")
+  print("\r ["+s+"] "+str(int(p))+"% "+u,end="")
 
 def download(model,option=None):
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
