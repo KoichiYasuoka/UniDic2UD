@@ -4,6 +4,7 @@
 import unidic2ud
 
 class Tree(unidic2ud.UDPipeEntry):
+  _cabocha=type("UniDic2Cabocha",(object,),{})
   def _makeChunks(self):
     m={"NOUN","PROPN","PRON","NUM","VERB","ADJ","DET","ADV","SYM"}
     p,s,c=[],[],[]
@@ -210,16 +211,12 @@ class Token(object):
   def feature_list(self,index):
     return self.feature.split(",")[index]
 
-class UniDic2CaboCha(object):
-  def __init__(self,parser):
-    self._parser=parser
-
 class Parser(object):
   def __init__(self,UniDic=None):
     self.UniDic2UD=unidic2ud.UniDic2UD(UniDic,UDPipe="japanese-modern")
   def parse(self,sentence):
     t=Tree(self.UniDic2UD(sentence,raw=True))
-    t._cabocha=UniDic2CaboCha(self)
+    t._cabocha._parser=self
     return t
   def parseToString(self,sentence):
     return self.parse(sentence).toString(0)
