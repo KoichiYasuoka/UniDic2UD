@@ -1,4 +1,4 @@
-from .unidic2cabocha import Parser
+from .unidic2cabocha import Tree,Chunk,Token,Parser
 
 FORMAT_TREE=0
 FORMAT_LATTICE=1
