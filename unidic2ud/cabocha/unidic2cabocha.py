@@ -6,7 +6,7 @@ import unidic2ud
 class Tree(unidic2ud.UDPipeEntry):
   _cabocha=type("UniDic2Cabocha",(object,),{})
   def _makeChunks(self):
-    m={"NOUN","PROPN","PRON","NUM","VERB","ADJ","DET","ADV","SYM"}
+    m={"NOUN","PROPN","PRON","NUM","VERB","ADJ","DET","ADV","INTJ","SYM"}
     p,s,c=[],[],[]
     x=0
     for i in range(1,len(self)):
