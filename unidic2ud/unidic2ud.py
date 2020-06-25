@@ -164,47 +164,10 @@ class UDPipeEntry(object):
 
 class UniDic2UDEntry(UDPipeEntry):
   def to_tree(self,BoxDrawingWidth=1,Japanese=True):
+    import deplacy
     if not hasattr(self,"_tokens"):
       return None
-    f=[[] for i in range(len(self))]
-    h=[0]
-    for i in range(1,len(self)):
-      if self[i].deprel=="root":
-        h.append(0)
-        continue
-      j=i+self[i].head.id-self[i].id
-      f[j].append(i)
-      h.append(j)
-    d=[1 if f[i]==[] and abs(h[i]-i)==1 else -1 if h[i]==0 else 0 for i in range(len(self))]
-    while 0 in d:
-      for i,e in enumerate(d):
-        if e!=0:
-          continue
-        g=[d[j] for j in f[i]]
-        if 0 in g:
-          continue
-        k=h[i]
-        if 0 in [d[j] for j in range(min(i,k)+1,max(i,k))]:
-          continue
-        for j in range(min(i,k)+1,max(i,k)):
-          if j in f[i]:
-            continue
-          g.append(d[j]-1 if j in f[k] else d[j])
-        g.append(0)
-        d[i]=max(g)+1
-    m=max(d)
-    p=[[0]*(m*2) for i in range(len(self))]
-    for i in range(1,len(self)):
-      k=h[i]
-      if k==0:
-        continue
-      j=d[i]*2-1
-      p[min(i,k)][j]|=9
-      p[max(i,k)][j]|=5
-      for l in range(j):
-        p[k][l]|=3
-      for l in range(min(i,k)+1,max(i,k)):
-        p[l][j]|=12
+    p=deplacy.renderMatrix(self,False)
     u=[" ","\u2578","\u257A","\u2550","\u2579","\u255D","\u255A","\u2569","\u257B","\u2557","\u2554","\u2566","\u2551","\u2563","\u2560","\u256C","<"]
     v=[t.form for t in self]
     l=[]
@@ -218,15 +181,7 @@ class UniDic2UDEntry(UDPipeEntry):
       r={}
     s=""
     for i in range(1,len(self)):
-      if h[i]>0:
-        j=d[i]*2-2
-        while j>=0:
-          if p[i][j]>0:
-            break
-          p[i][j]|=3
-          j-=1
-        p[i][j+1]=16
-      t="".join(u[j] for j in p[i])
+      t="".join(u[j] for j in p[i-1])
       if BoxDrawingWidth>1:
         t=t.replace(" "," "*BoxDrawingWidth).replace("<"," "*(BoxDrawingWidth-1)+"<")
       if self[i].deprel in r:
@@ -240,7 +195,6 @@ class UniDic2UDEntry(UDPipeEntry):
       else:
         s+=" "*(m-l[i])+v[i]+" "+t+" "+self[i].deprel+"\n"
     return s
-
 
 class UniDic2UD(object):
   def __init__(self,UniDic,UDPipe):
