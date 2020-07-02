@@ -163,12 +163,16 @@ class UDPipeEntry(object):
     return s
 
 class UniDic2UDEntry(UDPipeEntry):
-  def to_tree(self,BoxDrawingWidth=1,Japanese=True):
+  def to_tree(self,BoxDrawingWidth=1,Japanese=True,CatenaAnalysis=True):
     import deplacy
     if not hasattr(self,"_tokens"):
       return None
-    p=deplacy.renderMatrix(self,False)
+    p=deplacy.renderMatrix(self,CatenaAnalysis)
     u=[" ","\u2578","\u257A","\u2550","\u2579","\u255D","\u255A","\u2569","\u257B","\u2557","\u2554","\u2566","\u2551","\u2563","\u2560","\u256C","<"]
+    if CatenaAnalysis:
+      u[7]=u[5]
+      u[11]=u[9]
+      u[15]=u[12]
     v=[t.form for t in self]
     l=[]
     for w in v:
