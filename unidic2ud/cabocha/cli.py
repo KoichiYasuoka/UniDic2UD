@@ -13,7 +13,7 @@ def main():
         f=int(sys.argv[i])
       else:
         f=int(sys.argv[i][2:])
-      if f<0 or f>7:
+      if f<0 or f>8:
         usage()
     elif o.startswith("-U"):
       if o=="-U":
@@ -70,13 +70,18 @@ class parser(object):
       return self.parse(sentence).to_tree(2)
     elif self.format==7:
       return self.parse(sentence).to_svg()
+    elif self.format==8:
+      import deplacy
+      d=deplacy.dot(self.parse(sentence,raw=True)).split("\n")
+      d[0]=d[0].replace("deplacy","udcabocha")
+      return "\n".join(d)
     return self.parse(sentence).toString(self.format)
 
 def usage():
   from pkg_resources import get_distribution
   from unidic2ud import dictlist
   print("UniDic2UD Version "+get_distribution("unidic2ud").version,file=sys.stderr)
-  print("Usage: udcabocha -U Dict [-f 0-7] file",file=sys.stderr)
+  print("Usage: udcabocha -U Dict [-f 0-8] file",file=sys.stderr)
   print("       udcabocha --download=Dict",file=sys.stderr)
   s=" Dict:\n"+dictlist().replace(".udpipe","(udpipe)")
   print(s.replace("\n"," ").rstrip(),file=sys.stderr)
