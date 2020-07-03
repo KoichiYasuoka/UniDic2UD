@@ -134,6 +134,8 @@ echo 其國を治めんと欲する者は先づ其家を齊ふ | udcabocha -U qk
 
 ![dot.png](https://raw.githubusercontent.com/KoichiYasuoka/UniDic2UD/master/dot.png)
 
+Try [notebook](https://colab.research.google.com/github/KoichiYasuoka/UniDic2UD/blob/master/udcabocha.ipynb) for Google Colaboratory.
+
 ## Usage via spaCy
 
 If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or later, you can use `UniDic` via spaCy Language pipeline.
