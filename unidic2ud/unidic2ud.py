@@ -205,12 +205,13 @@ class UniDic2UD(object):
     self.UniDic=UniDic
     if UniDic!=None:
       d=os.path.join(DOWNLOAD_DIR,UniDic)
+      r=os.path.join(PACKAGE_DIR,"mecabrc")
       if os.path.isdir(d):
         try:
           from MeCab import Tagger
         except:
           from fugashi import GenericTagger as Tagger
-        self.mecab=Tagger("-d "+d).parse
+        self.mecab=Tagger("-r "+r+" -d "+d).parse
       elif UniDic=="ipadic":
         from MeCab import Tagger
         self.mecab=Tagger().parse
