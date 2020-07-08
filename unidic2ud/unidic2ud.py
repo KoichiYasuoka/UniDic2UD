@@ -179,8 +179,8 @@ class UniDic2UDEntry(UDPipeEntry):
       l.append(len(w)+len([c for c in w if ord(c)>12287]))
     m=max(l)
     if Japanese:
-      import unidic2ud.deprelja
-      r=unidic2ud.deprelja.deprelja
+      import deplacy.deprelja
+      r=deplacy.deprelja.deprelja
     else:
       r={}
     s=""
