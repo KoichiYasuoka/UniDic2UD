@@ -31,6 +31,7 @@ deprelja = {
   "cc":"接続詞",
   "fixed":"固着",
   "compound":"複合",
+  "compound:redup":"複合[重畳]",
   "flat":"並列",
   "flat:vv":"並列[動詞類]",
   "list":"細目",
