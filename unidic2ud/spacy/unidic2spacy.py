@@ -15,7 +15,7 @@ class UniDicLanguage(Language):
     self.vocab=self.Defaults.create_vocab()
     self.tokenizer=UniDicTokenizer(UniDic,UDPipe,self.vocab)
     self.pipeline=[]
-    self._meta = {
+    self._meta={
       "author":"Koichi Yasuoka",
       "description":"derived from UniDic2UD",
       "lang":"UniDic_"+UniDic if UniDic!=None else "udpipe_ja-modern",
