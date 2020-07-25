@@ -329,6 +329,8 @@ class UniDic2UD(object):
             upos="NUM"
           elif x[1]=="代名詞":
             upos="PRON"
+          elif x[1]=="助動詞語幹":
+            upos="AUX"
         elif x[0]=="動詞":
           upos="VERB"
           if x[1]=="非自立可能":
