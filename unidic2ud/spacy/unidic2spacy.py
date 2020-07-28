@@ -136,13 +136,13 @@ class UniDicMorph(object):
     except:
       return ""
 
-def load(UniDic=None,UDPipe="japanese-modern"):
-  if UniDic==UDPipe:
+def load(UniDic=None,parser="japanese-modern"):
+  if UniDic==parser:
     UniDic=None
-  if UniDic==None or not UDPipe.startswith("ja_"):
-    return UniDicLanguage(UniDic,UDPipe)
+  if UniDic==None or not parser.startswith("ja_"):
+    return UniDicLanguage(UniDic,parser)
   import spacy
-  nlp=spacy.load(UDPipe)
+  nlp=spacy.load(parser)
   nlp.tokenizer.tokenizer.tokenize=MeCab2Sudachi(UniDic)
   return nlp
 
