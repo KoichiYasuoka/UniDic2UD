@@ -168,6 +168,12 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 7 欲する 欲する VERB 動詞-一般 8 acl  ホッスル
 ```
 
+`unidic2ud.spacy.load(UniDic,parser)` loads a spaCy pipeline, which uses `UniDic` for tokenizer POS-tagger and lemmatizer, then uses `parser` for dependency-parser. The default `parser` is `parser="japanese-modern"` and available `parser` options are [spaCy Japanese models](https://spacy.io/models/ja):
+
+* `parser="ja_core_news_sm"`
+* `parser="ja_core_news_md"`
+* `parser="ja_core_news_lg"`
+
 ## Installation for Linux
 
 Tar-ball is available for Linux, and is installed by default when you use `pip`:
