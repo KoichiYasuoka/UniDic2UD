@@ -168,11 +168,13 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 7 欲する 欲する VERB 動詞-一般 8 acl  ホッスル
 ```
 
-`unidic2ud.spacy.load(UniDic,parser)` loads a spaCy pipeline, which uses `UniDic` for tokenizer POS-tagger and lemmatizer, then uses `parser` for dependency-parser. The default `parser` is `parser="japanese-modern"` and available [Japanese models](https://spacy.io/models/ja) are:
+`unidic2ud.spacy.load(UniDic,parser)` loads a spaCy pipeline, which uses `UniDic` for tokenizer POS-tagger and lemmatizer (as shown above), then uses `parser` for dependency-parser. The default `parser` is `parser="japanese-modern"` and available options are:
 
-* `parser="ja_core_news_sm"`
-* `parser="ja_core_news_md"`
-* `parser="ja_core_news_lg"`
+* `parser="ja_core_news_sm"`: Use [spaCy Japanese model](https://spacy.io/models/ja) (small).
+* `parser="ja_core_news_md"`: Use spaCy Japanese model (middle).
+* `parser="ja_core_news_lg"`: Use spaCy Japanese model (large).
+* `parser="ja_ginza"`: Use [GiNZA](https://github.com/megagonlabs/ginza).
+* `parser="japanese-gsd"`: Use [UDPipe Japanese model](http://hdl.handle.net/11234/1-3131).
 
 ## Installation for Linux
 
