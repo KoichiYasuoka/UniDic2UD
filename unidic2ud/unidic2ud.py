@@ -232,6 +232,15 @@ class UniDic2UD(object):
           self.udpipe=ufal.udpipe.Pipeline(self.model,"tokenizer=presegmented","","","").process
         else:
           self.udpipe=ufal.udpipe.Pipeline(self.model,"conllu","none","","").process
+      elif self.model.startswith("stanza_"):
+        import stanza
+        if UniDic==None:
+          self.model=stanza.Pipeline(self.model[7:],verbose=False)
+          from stanza.utils.conll import CoNLL
+          self.udpipe=lambda text:CoNLL.conll_as_string(CoNLL.convert_dict(self.model(text).to_dict()))
+        else:
+          self.model=stanza.Pipeline(self.model[7:],processors="depparse",depparse_pretagged=True,verbose=False)
+          self.udpipe=self.StanzaAPI
   def __call__(self,sentence,raw=False):
     sent=sentence
     i=sent.find("\u3099")
@@ -396,6 +405,27 @@ class UniDic2UD(object):
         q=r.read()
       u+=json.loads(q)["result"]
     return u
+  def StanzaAPI(self,conllu):
+    d=[]
+    e=[]
+    f={"NOUN":"NN","PROPN":"NNP","NUM":"CD","PRON":"NP","VERB":"VV","AUX":"AV","ADJ":"JJ","DET":"JR","ADV":"RB","SCONJ":"PC","CCONJ":"CC","PART":"JN","INTJ":"UH","PUNCT":"SYM","SYM":"SYM"}
+    g={"名詞-普通名詞-副詞可能":"NR","接頭辞":"XP","助詞-格助詞":"PS","助詞-係助詞":"PK","助詞-副助詞":"PH","助詞-準体助詞":"PN","助詞-終助詞":"PE","接尾辞-名詞的-助数詞":"XSC","接尾辞-動詞的":"AV"}
+    for s in conllu.split("\n"):
+      if s=="" or s.startswith("#"):
+        if e!=[]:
+          d.append([t for t in e])
+          e=[]
+      else:
+        t=s.split("\t")
+        x="_"
+        if t[3] in f:
+          x=f[t[3]]
+        if t[4] in g:
+          x=g[t[4]]
+        e.append({"id":t[0],"text":t[1],"lemma":t[2],"upos":t[3],"xpos":x,"misc":t[9]})
+    from stanza.models.common.doc import Document
+    from stanza.utils.conll import CoNLL
+    return CoNLL.conll_as_string(CoNLL.convert_dict(self.model(Document(d)).to_dict()))
 
 def load(UniDic=None,UDPipe="japanese-modern"):
   if UniDic==UDPipe:

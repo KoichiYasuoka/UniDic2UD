@@ -175,6 +175,7 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 * `parser="ja_core_news_lg"`: Use spaCy Japanese model (large).
 * `parser="ja_ginza"`: Use [GiNZA](https://github.com/megagonlabs/ginza).
 * `parser="japanese-gsd"`: Use [UDPipe Japanese model](http://hdl.handle.net/11234/1-3131).
+* `parser="stanza_ja"`: Use [Stanza](https://stanfordnlp.github.io/stanza/available_models.html) Japanese model.
 
 ## Installation for Linux
 
