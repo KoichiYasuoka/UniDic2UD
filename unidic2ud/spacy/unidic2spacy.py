@@ -152,11 +152,15 @@ def to_conllu(item,offset=1):
   elif type(item)==Span:
     return "# text = "+str(item)+"\n"+"".join(to_conllu(t,1-item.start)+"\n" for t in item)
   elif type(item)==Token:
-    m="_" if item.whitespace_ else "SpaceAfter=No"
+    m="_"
+    if item.ent_iob_ in {"B","I"}:
+      m="NE="+item.ent_iob_+"-"+item.ent_type_
+    if not item.whitespace_:
+      m+="|SpaceAfter=No"
     if item.norm_!="":
       if item.norm_!=item.orth_:
         m+="|Translit="+item.norm_
-        m=m.replace("_|","")
+    m=m.replace("_|","")
     return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,"_",str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_",m])
   return "".join(to_conllu(s)+"\n" for s in item)
 
