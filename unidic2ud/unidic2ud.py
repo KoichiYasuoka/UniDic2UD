@@ -348,6 +348,8 @@ class UniDic2UD(object):
               if u.endswith(t):
                 u=u[0:-len(t)]+"\tVERB\t"+u[6-len(t):]
                 upos="AUX"
+            elif lxpos.startswith("形容詞") or lxpos.startswith("動詞"):
+              upos="AUX"
         elif x[0]=="助動詞":
           upos="AUX"
           if lxpos.endswith("形状詞可能"):
