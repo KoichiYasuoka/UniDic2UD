@@ -95,6 +95,16 @@ class Tree(unidic2ud.UDPipeEntry):
         x[7]=self[t].misc[j+9:]
       x[9]=self[t].upos
       self._cabocha._features.append(",".join(x[0:10]))
+  def _get_ne(self,index):
+    f=self._cabocha._features[index]
+    if f.startswith("名詞,固有名詞,"):
+      t=f.split(",")
+      if t[2]=="人名":
+        return("B-PERSON")
+      if t[2]=="地名":
+        return("B-LOCATION")
+      return("B-ORGANIZATION")
+    return("O")
   def toString(self,format=4):
     if format==4:
       return str(self)
@@ -123,7 +133,7 @@ class Tree(unidic2ud.UDPipeEntry):
         for i,d,t,h,f,w,z in self._cabocha._chunkinfo[k]:
           result+="* "+str(i)+" "+str(d)+"D "+str(h)+"/"+str(f)+" 0.000000\n"
           for t in s[i]:
-            result+=self[t].form+"\t"+self._cabocha._features[t]+"\t"+str(self[t].id)+"<-"+self[t].deprel
+            result+=self[t].form+"\t"+self._cabocha._features[t]+"\t"+self._get_ne(t)+"\t"+str(self[t].id)+"<-"+self[t].deprel
             if self[t] is self[t].head:
               result+="\n"
             else:
@@ -206,6 +216,7 @@ class Token(object):
       tree._makeFeatures()
     self.feature=tree._cabocha._features[index+1]
     self.feature_list_size=len(self.feature.split(","))
+    self.ne=tree._get_ne(index+1)
   def __repr__(self):
     return self.normalized_surface
   def feature_list(self,index):
