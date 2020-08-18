@@ -130,11 +130,15 @@ class UniDicMorph(object):
     if i<1:
       return n
     return n[0:i]
+  def dictionary_form(self):
+    return self.normalized_form()
   def reading_form(self):
     try:
       return self.morph_line[1].split(",")[10]
     except:
       return ""
+  def split(self,mode):
+    return [self]
 
 def load(UniDic=None,parser="japanese-modern"):
   if UniDic==parser:
