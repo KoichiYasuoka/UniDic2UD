@@ -9,7 +9,7 @@ URL="https://github.com/KoichiYasuoka/UniDic2UD"
 
 pl=platform.platform()
 if pl.startswith("CYGWIN"):
-  install_requires=["ufal.udpipe>=1.2.0","mecab-cygwin>=0.5.0","deplacy>=1.4.3"]
+  install_requires=["ufal.udpipe>=1.2.0","mecab-cygwin>=0.5.0","deplacy>=1.5.1"]
 else:
   import sys
   useFugashi=(sys.version_info.major==3)and(sys.version_info.minor>4)
@@ -19,13 +19,13 @@ else:
     import os
     useFugashi&=(os.name=="nt")
   if useFugashi:
-    install_requires=["ufal.udpipe>=1.2.0.3","fugashi>=1.0.4","deplacy>=1.4.3"]
+    install_requires=["ufal.udpipe>=1.2.0.3","fugashi>=1.0.4","deplacy>=1.5.1"]
   else:
-    install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996.5","deplacy>=1.4.3"]
+    install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996.5","deplacy>=1.5.1"]
 
 setuptools.setup(
   name="unidic2ud",
-  version="2.4.4",
+  version="2.4.5",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
