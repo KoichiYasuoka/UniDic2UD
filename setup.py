@@ -9,7 +9,7 @@ URL="https://github.com/KoichiYasuoka/UniDic2UD"
 
 pl=platform.platform()
 if pl.startswith("CYGWIN"):
-  install_requires=["ufal.udpipe>=1.2.0","mecab-cygwin>=0.5.0","deplacy>=1.5.1"]
+  install_requires=["ufal.udpipe>=1.2.0","mecab-cygwin>=0.5.0","deplacy>=1.5.9"]
 else:
   import sys
   useFugashi=(sys.version_info.major==3)and(sys.version_info.minor>4)
@@ -19,13 +19,13 @@ else:
     import os
     useFugashi&=(os.name=="nt")
   if useFugashi:
-    install_requires=["ufal.udpipe>=1.2.0.3","fugashi>=1.0.4","deplacy>=1.5.1"]
+    install_requires=["ufal.udpipe>=1.2.0.3","fugashi>=1.0.4","deplacy>=1.5.9"]
   else:
-    install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996.5","deplacy>=1.5.1"]
+    install_requires=["ufal.udpipe>=1.2.0","mecab-python3>=0.996.5","deplacy>=1.5.9"]
 
 setuptools.setup(
   name="unidic2ud",
-  version="2.4.5",
+  version="2.4.6",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
@@ -38,7 +38,7 @@ setuptools.setup(
   install_requires=install_requires,
   python_requires=">=3.6",
   package_data={
-    "unidic2ud":["./mecabrc","./*.js","./download/*.udpipe"],
+    "unidic2ud":["./mecabrc","./download/*.udpipe"],
   },
   entry_points={
     "console_scripts":[
