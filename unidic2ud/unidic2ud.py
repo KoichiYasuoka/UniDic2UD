@@ -51,6 +51,7 @@ def progress(block_count,block_size,total_size):
   print("\r ["+s+"] "+str(int(p))+"% "+u,end="")
 
 def download(model,option=None):
+  global tm
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
   if option=="unidic":
     u=UNIDIC_URLS[model]
