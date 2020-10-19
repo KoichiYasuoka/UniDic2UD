@@ -114,6 +114,18 @@ EOS
 * 8 -1D 0/0 0.000000
 齊ふ	動詞,一般,*,*,*,*,整える,トトノフ,*,VERB	O	14<-root
 EOS
+>>> for c in [s.chunk(i) for i in range(s.chunk_size())]:
+...   if c.link>=0:
+...     print(c,"->",s.chunk(c.link))
+...
+其 -> 國を
+國を -> 治めんと
+治めんと -> 欲する
+欲する -> 者は
+者は -> 齊ふ
+先づ -> 齊ふ
+其 -> 家を
+家を -> 齊ふ
 ```
 `CaboCha.Parser(UniDic)` is an alias for `unidic2ud.load(UniDic,UDPipe="japanese-modern")`, and its default is `UniDic=None`. `CaboCha.Tree.toString(format)` has five available formats:
 * `CaboCha.FORMAT_TREE`: tree (numbered as 0)
