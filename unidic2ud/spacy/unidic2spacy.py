@@ -12,9 +12,15 @@ class UniDicLanguage(Language):
   max_length=10**6
   def __init__(self,UniDic,UDPipe):
     self.Defaults.lex_attr_getters[LANG]=lambda _text:"ja"
-    self.vocab=self.Defaults.create_vocab()
+    try:
+      self.vocab=self.Defaults.create_vocab()
+      self.pipeline=[]
+    except:
+      from spacy.vocab import create_vocab
+      self.vocab=create_vocab("ja",self.Defaults)
+      self._components=[]
+      self._disabled=set()
     self.tokenizer=UniDicTokenizer(UniDic,UDPipe,self.vocab)
-    self.pipeline=[]
     self._meta={
       "author":"Koichi Yasuoka",
       "description":"derived from UniDic2UD",
@@ -44,6 +50,7 @@ class UniDicTokenizer(object):
     lemmas=[]
     pos=[]
     tags=[]
+    feats=[]
     heads=[]
     deps=[]
     spaces=[]
@@ -54,11 +61,12 @@ class UniDicTokenizer(object):
       s=t.split("\t")
       if len(s)!=10:
         continue
-      id,form,lemma,upos,xpos,dummy_feats,head,deprel,dummy_deps,misc=s
+      id,form,lemma,upos,xpos,feat,head,deprel,dummy_deps,misc=s
       words.append(form)
       lemmas.append(vs.add(lemma))
       pos.append(vs.add(upos))
       tags.append(vs.add(xpos))
+      feats.append(feat)
       if deprel=="root":
         heads.append(0)
         deps.append(r)
@@ -71,8 +79,13 @@ class UniDicTokenizer(object):
     doc=Doc(self.vocab,words=words,spaces=spaces)
     a=numpy.array(list(zip(lemmas,pos,tags,deps,heads,norms)),dtype="uint64")
     doc.from_array([LEMMA,POS,TAG,DEP,HEAD,NORM],a)
-    doc.is_tagged=True
-    doc.is_parsed=True
+    try:
+      doc.is_tagged=True
+      doc.is_parsed=True
+    except:
+      for i,j in enumerate(feats):
+        if j!="_" and j!="":
+          doc[i].set_morph(j)
     return doc
 
 class MeCab2Sudachi(object):
@@ -165,6 +178,12 @@ def to_conllu(item,offset=1):
       if item.norm_!=item.orth_:
         m+="|Translit="+item.norm_
     m=m.replace("_|","")
-    return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,"_",str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_",m])
+    try:
+      f=str(item.morph)
+      if f.startswith("<spacy") or f=="":
+        f="_"
+    except:
+      f="_"
+    return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,f,str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_",m])
   return "".join(to_conllu(s)+"\n" for s in item)
 
