@@ -431,7 +431,7 @@ class UniDic2UD(object):
           x=f[t[3]]
         if t[4] in g:
           x=g[t[4]]
-        e.append({"id":t[0],"text":t[1],"lemma":t[2],"upos":t[3],"xpos":x,"misc":t[9]})
+        e.append({"id":int(t[0]),"text":t[1],"lemma":t[2],"upos":t[3],"xpos":x,"misc":t[9]})
     from stanza.models.common.doc import Document
     from stanza.utils.conll import CoNLL
     return CoNLL.conll_as_string(CoNLL.convert_dict(self.model(Document(d)).to_dict()))
