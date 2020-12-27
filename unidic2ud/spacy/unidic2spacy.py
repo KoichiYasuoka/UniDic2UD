@@ -154,6 +154,8 @@ class UniDicMorph(object):
     return [self]
 
 def load(UniDic=None,parser="japanese-modern"):
+  if parser==None:
+    return UniDicLanguage(UniDic,None)
   if UniDic==parser:
     UniDic=None
   if UniDic==None or not parser.startswith("ja_"):
