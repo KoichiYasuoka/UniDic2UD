@@ -215,8 +215,15 @@ class UniDic2UD(object):
           from fugashi import GenericTagger as Tagger
         self.mecab=Tagger("-r "+r+" -d "+d).parse
       elif UniDic=="ipadic":
-        from MeCab import Tagger
-        self.mecab=Tagger().parse
+        try:
+          from MeCab import Tagger
+        except:
+          from fugashi import GenericTagger as Tagger
+        try:
+          import ipadic
+          self.mecab=Tagger(ipadic.MECAB_ARGS).parse
+        except:
+          self.mecab=Tagger().parse
       else:
         d={ "gendai":"dic1", "spoken":"dic2", "qkana":"dic3", "kindai":"dic4", "kinsei":"dic5", "kyogen":"dic6", "wakan":"dic7", "wabun":"dic8", "manyo":"dic9" }
         self.dictkey=d[UniDic]
