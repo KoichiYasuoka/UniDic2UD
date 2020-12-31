@@ -1,0 +1,59 @@
+# text = 石炭をば早や積み果てつ
+1	石炭	石炭	NOUN	名詞-普通名詞-一般	_	4	obj	_	SpaceAfter=No|Translit=セキタン
+2	をば	をば	ADP	助詞-格助詞	_	1	case	_	SpaceAfter=No|Translit=ヲバ
+3	早や	早	ADV	副詞	_	4	advmod	_	SpaceAfter=No|Translit=ハヤ
+4	積み	積む	VERB	動詞-一般	_	0	root	_	SpaceAfter=No|Translit=ツミ
+5	果て	果てる	AUX	動詞-非自立可能	_	4	aux	_	SpaceAfter=No|Translit=ハテ
+6	つ	つ	AUX	助動詞	_	4	aux	_	SpaceAfter=No|Translit=ツ
+
+# text = 中等室の卓のほとりはいと閑かにて熾熱燈の光の晴れがましきもやくなし、
+1	中等	中等	NOUN	名詞-普通名詞-一般	_	2	compound	_	SpaceAfter=No|Translit=チュウトウ
+2	室	室	NOUN	接尾辞-名詞的-一般	_	4	nmod	_	SpaceAfter=No|Translit=シツ
+3	の	の	ADP	助詞-格助詞	_	2	case	_	SpaceAfter=No|Translit=ノ
+4	卓	机	NOUN	名詞-普通名詞-一般	_	6	nmod	_	SpaceAfter=No|Translit=ツクエ
+5	の	の	ADP	助詞-格助詞	_	4	case	_	SpaceAfter=No|Translit=ノ
+6	ほとり	辺	NOUN	名詞-普通名詞-一般	_	9	nsubj	_	SpaceAfter=No|Translit=ホトリ
+7	は	は	ADP	助詞-係助詞	_	6	case	_	SpaceAfter=No|Translit=ハ
+8	いと	いと	ADV	副詞	_	9	advmod	_	SpaceAfter=No|Translit=イト
+9	閑か	静か	ADJ	形状詞-一般	_	19	advcl	_	SpaceAfter=No|Translit=シズカ
+10	に	だ	AUX	助動詞	_	9	aux	_	SpaceAfter=No|Translit=ニ
+11	て	て	SCONJ	助詞-接続助詞	_	9	mark	_	SpaceAfter=No|Translit=テ
+12	熾熱	熾熱	NOUN	名詞-普通名詞-一般	_	13	compound	_	SpaceAfter=No|Translit=シネツ
+13	燈	灯	NOUN	接尾辞-名詞的-一般	_	15	nmod	_	SpaceAfter=No|Translit=トウ
+14	の	の	ADP	助詞-格助詞	_	13	case	_	SpaceAfter=No|Translit=ノ
+15	光	光	NOUN	名詞-普通名詞-一般	_	17	nsubj	_	SpaceAfter=No|Translit=ヒカリ
+16	の	の	ADP	助詞-格助詞	_	15	case	_	SpaceAfter=No|Translit=ノ
+17	晴れがましき	晴れがましい	ADJ	形容詞-一般	_	19	csubj	_	SpaceAfter=No|Translit=ハレガマシキ
+18	も	も	ADP	助詞-係助詞	_	17	mark	_	SpaceAfter=No|Translit=モ
+19	やくなし	益無い	ADJ	形容詞-一般	_	0	root	_	SpaceAfter=No|Translit=ヤクナシ
+20	、	、	PUNCT	補助記号-読点	_	19	punct	_	SpaceAfter=No
+
+# text = 今宵は夜毎にこゝに集ひ來る骨牌仲間も「ホテル」に宿りて舟に殘りしは余一人のみなれば
+1	今宵	今宵	NOUN	名詞-普通名詞-副詞可能	_	16	obl	_	SpaceAfter=No|Translit=コヨイ
+2	は	は	ADP	助詞-係助詞	_	1	case	_	SpaceAfter=No|Translit=ハ
+3	夜	夜	NOUN	名詞-普通名詞-一般	_	4	compound	_	SpaceAfter=No|Translit=ヨ
+4	毎	毎	NOUN	接尾辞-名詞的-一般	_	8	obl	_	SpaceAfter=No|Translit=ゴト
+5	に	に	ADP	助詞-格助詞	_	4	case	_	SpaceAfter=No|Translit=ニ
+6	こゝ	此処	PRON	代名詞	_	8	obl	_	SpaceAfter=No|Translit=ココ
+7	に	に	ADP	助詞-格助詞	_	6	case	_	SpaceAfter=No|Translit=ニ
+8	集ひ來る	集い来たる	VERB	動詞-一般	_	10	acl	_	SpaceAfter=No|Translit=ツドイキタル
+9	骨牌	カルタ	NOUN	名詞-普通名詞-一般	_	10	compound	_	SpaceAfter=No|Translit=カルタ
+10	仲間	仲間	NOUN	名詞-普通名詞-一般	_	16	nsubj	_	SpaceAfter=No|Translit=ナカマ
+11	も	も	ADP	助詞-係助詞	_	10	case	_	SpaceAfter=No|Translit=モ
+12	「	「	PUNCT	補助記号-括弧開	_	13	punct	_	SpaceAfter=No
+13	ホテル	ホテル	NOUN	名詞-普通名詞-一般	_	16	obl	_	SpaceAfter=No
+14	」	」	PUNCT	補助記号-括弧閉	_	13	punct	_	SpaceAfter=No
+15	に	に	ADP	助詞-格助詞	_	13	case	_	SpaceAfter=No|Translit=ニ
+16	宿り	宿る	VERB	動詞-一般	_	24	advcl	_	SpaceAfter=No|Translit=ヤドリ
+17	て	て	SCONJ	助詞-接続助詞	_	16	mark	_	SpaceAfter=No|Translit=テ
+18	舟	船	NOUN	名詞-普通名詞-一般	_	20	obl	_	SpaceAfter=No|Translit=フネ
+19	に	に	ADP	助詞-格助詞	_	18	case	_	SpaceAfter=No|Translit=ニ
+20	殘り	残る	VERB	動詞-一般	_	24	csubj	_	SpaceAfter=No|Translit=ノコリ
+21	し	き	AUX	助動詞	_	20	aux	_	SpaceAfter=No|Translit=シ
+22	は	は	ADP	助詞-係助詞	_	20	mark	_	SpaceAfter=No|Translit=ハ
+23	余	余	PRON	代名詞	_	24	nmod	_	SpaceAfter=No|Translit=ヨ
+24	一人	一人	NOUN	名詞-普通名詞-副詞可能	_	0	root	_	SpaceAfter=No|Translit=ヒトリ
+25	のみ	のみ	ADP	助詞-副助詞	_	24	case	_	SpaceAfter=No|Translit=ノミ
+26	なれ	なり	AUX	助動詞	_	24	cop	_	SpaceAfter=No|Translit=ナレ
+27	ば	ば	CCONJ	助詞-接続助詞	_	24	mark	_	SpaceAfter=No|Translit=バ
+
