@@ -225,7 +225,7 @@ Results of [舞姬/荒野より-Benchmarks](https://colab.research.google.com/gi
 |UniDic="kindai"|81.13|70.37|77.78|
 |UniDic="qkana" |77.36|66.67|74.07|
 |UniDic="kinsei"|72.22|60.71|64.29|
-
+|---------------|-----|-----|-----|
 |[荒野より-Benchmark](https://github.com/KoichiYasuoka/UniDic2UD/blob/master/benchmark/koyayori-benchmark.tar.gz)|LAS|MLAS|BLEX|
 |---------------|-----|-----|-----|
 |UniDic=None    |70.90|56.41|38.46|
