@@ -218,13 +218,19 @@ Use `python3.7` command in [Cygwin](https://www.cygwin.com/install.html) instead
 ```
 ## Benchmarks
 
-Results of [舞姬/荒野より-Benchmarks](https://colab.research.google.com/github/KoichiYasuoka/UniDic2UD/blob/master/benchmark/benchmark.ipynb)
+Results of [舞姬/雪國/荒野より-Benchmarks](https://colab.research.google.com/github/KoichiYasuoka/UniDic2UD/blob/master/benchmark/benchmark.ipynb)
 
 |[舞姬](https://github.com/KoichiYasuoka/UniDic2UD/blob/master/benchmark/maihime-benchmark.tar.gz)|LAS|MLAS|BLEX|
 |---------------|-----|-----|-----|
 |UniDic="kindai"|81.13|70.37|77.78|
 |UniDic="qkana" |77.36|66.67|74.07|
 |UniDic="kinsei"|72.22|60.71|64.29|
+
+|[雪國](https://github.com/KoichiYasuoka/UniDic2UD/blob/master/benchmark/yukiguni-benchmark.tar.gz)|LAS|MLAS|BLEX|
+|---------------|-----|-----|-----|
+|UniDic="qkana" |94.64|88.00|84.00|
+|UniDic="kinsei"|94.64|88.00|84.00|
+|UniDic="kindai"|90.27|84.00|80.00|
 
 |[荒野より](https://github.com/KoichiYasuoka/UniDic2UD/blob/master/benchmark/koyayori-benchmark.tar.gz)|LAS|MLAS|BLEX|
 |---------------|-----|-----|-----|
