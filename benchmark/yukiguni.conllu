@@ -1,0 +1,66 @@
+# text = 國境の長いトンネルを拔けると雪國であつた。
+1	國境	国境	NOUN	名詞-普通名詞-一般	_	4	nmod	_	SpaceAfter=No|Translit=コッキョウ
+2	の	の	ADP	助詞-格助詞	_	1	case	_	SpaceAfter=No|Translit=ノ
+3	長い	長い	ADJ	形容詞-一般	_	4	amod	_	SpaceAfter=No|Translit=ナガイ
+4	トンネル	トンネル	NOUN	名詞-普通名詞-サ変可能	_	6	obj	_	SpaceAfter=No
+5	を	を	ADP	助詞-格助詞	_	4	case	_	SpaceAfter=No|Translit=ヲ
+6	拔ける	抜ける	VERB	動詞-非自立可能	_	8	advcl	_	SpaceAfter=No|Translit=ヌケル
+7	と	と	CCONJ	助詞-接続助詞	_	6	mark	_	SpaceAfter=No|Translit=ト
+8	雪國	雪国	NOUN	名詞-普通名詞-一般	_	0	root	_	SpaceAfter=No|Translit=ユキグニ
+9	で	だ	AUX	助動詞	_	8	cop	_	SpaceAfter=No|Translit=デ
+10	あつ	有る	AUX	動詞-非自立可能	_	8	aux	_	SpaceAfter=No|Translit=アッ
+11	た	た	AUX	助動詞	_	8	aux	_	SpaceAfter=No|Translit=タ
+12	。	。	PUNCT	補助記号-句点	_	8	punct	_	SpaceAfter=No
+
+# text = 夜の底が白くなつた。
+1	夜	夜	NOUN	名詞-普通名詞-副詞可能	_	3	nmod	_	SpaceAfter=No|Translit=ヨル
+2	の	の	ADP	助詞-格助詞	_	1	case	_	SpaceAfter=No|Translit=ノ
+3	底	底	NOUN	名詞-普通名詞-一般	_	5	nsubj	_	SpaceAfter=No|Translit=ソコ
+4	が	が	ADP	助詞-格助詞	_	3	case	_	SpaceAfter=No|Translit=ガ
+5	白く	白い	ADJ	形容詞-一般	_	0	root	_	SpaceAfter=No|Translit=シロク
+6	なつ	成る	AUX	動詞-非自立可能	_	5	aux	_	SpaceAfter=No|Translit=ナッ
+7	た	た	AUX	助動詞	_	5	aux	_	SpaceAfter=No|Translit=タ
+8	。	。	PUNCT	補助記号-句点	_	5	punct	_	SpaceAfter=No
+
+# text = 信號所に汽車が止つた。
+1	信號	信号	NOUN	名詞-普通名詞-一般	_	2	compound	_	SpaceAfter=No|Translit=シンゴウ
+2	所	所	NOUN	接尾辞-名詞的-一般	_	6	obl	_	SpaceAfter=No|Translit=ショ
+3	に	に	ADP	助詞-格助詞	_	2	case	_	SpaceAfter=No|Translit=ニ
+4	汽車	汽車	NOUN	名詞-普通名詞-一般	_	6	nsubj	_	SpaceAfter=No|Translit=キシャ
+5	が	が	ADP	助詞-格助詞	_	4	case	_	SpaceAfter=No|Translit=ガ
+6	止つ	止まる	VERB	動詞-一般	_	0	root	_	SpaceAfter=No|Translit=トマッ
+7	た	た	AUX	助動詞	_	6	aux	_	SpaceAfter=No|Translit=タ
+8	。	。	PUNCT	補助記号-句点	_	6	punct	_	SpaceAfter=No
+
+# text = 向側の座席から娘が立つて來て、島村の前のガラス窓を落した。
+1	向側	向かい側	NOUN	名詞-普通名詞-一般	_	3	nmod	_	SpaceAfter=No|Translit=ムカイガワ
+2	の	の	ADP	助詞-格助詞	_	1	case	_	SpaceAfter=No|Translit=ノ
+3	座席	座席	NOUN	名詞-普通名詞-一般	_	7	obl	_	SpaceAfter=No|Translit=ザセキ
+4	から	から	ADP	助詞-格助詞	_	3	case	_	SpaceAfter=No|Translit=カラ
+5	娘	娘	NOUN	名詞-普通名詞-一般	_	7	nsubj	_	SpaceAfter=No|Translit=ムスメ
+6	が	が	ADP	助詞-格助詞	_	5	case	_	SpaceAfter=No|Translit=ガ
+7	立つ	立つ	VERB	動詞-一般	_	9	advcl	_	SpaceAfter=No|Translit=タッ
+8	て	て	SCONJ	助詞-接続助詞	_	7	mark	_	SpaceAfter=No|Translit=テ
+9	來	来る	VERB	動詞-非自立可能	_	19	advcl	_	SpaceAfter=No|Translit=キ
+10	て	て	SCONJ	助詞-接続助詞	_	9	mark	_	SpaceAfter=No|Translit=テ
+11	、	、	PUNCT	補助記号-読点	_	9	punct	_	SpaceAfter=No
+12	島村	シマムラ	PROPN	名詞-固有名詞-人名-姓	_	14	nmod	_	SpaceAfter=No|Translit=シマムラ
+13	の	の	ADP	助詞-格助詞	_	12	case	_	SpaceAfter=No|Translit=ノ
+14	前	前	NOUN	名詞-普通名詞-副詞可能	_	17	nmod	_	SpaceAfter=No|Translit=マエ
+15	の	の	ADP	助詞-格助詞	_	14	case	_	SpaceAfter=No|Translit=ノ
+16	ガラス	ガラス	NOUN	名詞-普通名詞-一般	_	17	compound	_	SpaceAfter=No
+17	窓	窓	NOUN	名詞-普通名詞-一般	_	19	obj	_	SpaceAfter=No|Translit=マド
+18	を	を	ADP	助詞-格助詞	_	17	case	_	SpaceAfter=No|Translit=ヲ
+19	落し	落とす	VERB	動詞-一般	_	0	root	_	SpaceAfter=No|Translit=オトシ
+20	た	た	AUX	助動詞	_	19	aux	_	SpaceAfter=No|Translit=タ
+21	。	。	PUNCT	補助記号-句点	_	19	punct	_	SpaceAfter=No
+
+# text = 雪の冷氣が流れこんだ。
+1	雪	雪	NOUN	名詞-普通名詞-一般	_	3	nmod	_	SpaceAfter=No|Translit=ユキ
+2	の	の	ADP	助詞-格助詞	_	1	case	_	SpaceAfter=No|Translit=ノ
+3	冷氣	冷気	NOUN	名詞-普通名詞-一般	_	5	nsubj	_	SpaceAfter=No|Translit=レイキ
+4	が	が	ADP	助詞-格助詞	_	3	case	_	SpaceAfter=No|Translit=ガ
+5	流れこん	流れ込む	VERB	動詞-一般	_	0	root	_	SpaceAfter=No|Translit=ナガレコン
+6	だ	た	AUX	助動詞	_	5	aux	_	SpaceAfter=No|Translit=ダ
+7	。	。	PUNCT	補助記号-句点	_	5	punct	_	SpaceAfter=No
+
