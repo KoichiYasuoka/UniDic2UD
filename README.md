@@ -216,7 +216,7 @@ Use `python3.7` command in [Cygwin](https://www.cygwin.com/install.html) instead
 ```py
 !pip install unidic2ud
 ```
-## Benchmark
+## Benchmarks
 
 Results of [舞姬/荒野より-Benchmarks](https://colab.research.google.com/github/KoichiYasuoka/UniDic2UD/blob/master/benchmark/benchmark.ipynb)
 
