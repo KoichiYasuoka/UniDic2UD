@@ -6,6 +6,7 @@ from spacy.language import Language
 from spacy.symbols import LANG,NORM,LEMMA,POS,TAG,DEP,HEAD
 from spacy.tokens import Doc,Span,Token
 from spacy.util import get_lang_class
+from unidic2ud.cabocha import Tree
 
 class UniDicLanguage(Language):
   lang="ja"
@@ -86,6 +87,16 @@ class UniDicTokenizer(object):
       for i,j in enumerate(feats):
         if j!="_" and j!="":
           doc[i].set_morph(j)
+    t=Tree(u)
+    t._makeChunks()
+    bunsetu=["I"]*len(doc)
+    for s in t._cabocha._sentences:
+      for w in s:
+        try:
+          bunsetu[w[0]-1]="B"
+        except:
+          pass
+    doc.user_data["bunsetu_bi_labels"]=bunsetu
     return doc
 
 class MeCab2Sudachi(object):
@@ -188,4 +199,23 @@ def to_conllu(item,offset=1):
       f="_"
     return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,f,str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_",m])
   return "".join(to_conllu(s)+"\n" for s in item)
+
+def bunsetu_spans(doc):
+  if type(doc)==Doc:
+    b=[i for i,j in enumerate(doc.user_data["bunsetu_bi_labels"]) if j=="B"]
+    b.append(len(doc))
+    return [Span(doc,i,j) for i,j in zip(b,b[1:])]
+  elif type(doc)==Span:
+    b=doc[0].doc.user_data["bunsetu_bi_labels"]
+    s=[bunsetu_span(doc[0])] if b[doc[0].i]=="I" else []
+    for t in doc:
+      if b[t.i]=="B":
+        s.append(bunsetu_span(t))
+    return s
+  elif type(doc)==Token:
+    return [bunsetu_span(doc)]
+
+def bunsetu_span(token):
+  b="".join(token.doc.user_data["bunsetu_bi_labels"])+"B"
+  return Span(token.doc,b.rindex("B",0,token.i+1),b.index("B",token.i+1))
 

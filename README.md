@@ -156,8 +156,6 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 >>> import unidic2ud.spacy
 >>> qkana=unidic2ud.spacy.load("qkana")
 >>> d=qkana("其國を治めんと欲する者は先づ其家を齊ふ")
->>> print(type(d))
-<class 'spacy.tokens.doc.Doc'>
 >>> print(unidic2ud.spacy.to_conllu(d))
 # text = 其國を治めんと欲する者は先づ其家を齊ふ
 1	其	其の	DET	連体詞	_	2	det	_	SpaceAfter=No|Translit=ソノ
@@ -178,6 +176,20 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 >>> t=d[6]
 >>> print(t.i+1,t.orth_,t.lemma_,t.pos_,t.tag_,t.head.i+1,t.dep_,t.whitespace_,t.norm_)
 7 欲する 欲する VERB 動詞-一般 8 acl  ホッスル
+
+>>> from deplacy.deprelja import deprelja
+>>> for b in unidic2ud.spacy.bunsetu_spans(d):
+...   for t in b.lefts:
+...     print(unidic2ud.spacy.bunsetu_span(t),"->",b,"("+deprelja[t.dep_]+")")
+...
+其 -> 國を (決定詞)
+國を -> 治めんと (目的語)
+治めんと -> 欲する (連用修飾節)
+欲する -> 者は (連体修飾節)
+其 -> 家を (決定詞)
+者は -> 齊ふ (主語)
+先づ -> 齊ふ (連用修飾語)
+家を -> 齊ふ (目的語)
 ```
 
 `unidic2ud.spacy.load(UniDic,parser)` loads a spaCy pipeline, which uses `UniDic` for tokenizer POS-tagger and lemmatizer (as shown above), then uses `parser` for dependency-parser. The default `parser` is `parser="japanese-modern"` and available options are:
