@@ -1,5 +1,6 @@
 #! /bin/sh
-# 舞姬-Benchmark with spaCy and conll18_ud_eval.py
+# 舞姬雪國荒野より-Benchmarks with spaCy and conll18_ud_eval.py
+# https://github.com/KoichiYasuoka/UniDic2UD/tree/master/benchmark
 
 MODULE=${1-'unidic2ud.spacy'}
 LOAD=${2-'load("kindai")'}
