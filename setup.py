@@ -1,7 +1,4 @@
-import setuptools
-import subprocess
-import platform
-import os
+import os,platform,setuptools,subprocess
 
 with open("README.md","r",encoding="utf-8") as r:
   long_description=r.read()
@@ -25,7 +22,7 @@ else:
 
 setuptools.setup(
   name="unidic2ud",
-  version="2.6.4",
+  version="2.6.5",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
