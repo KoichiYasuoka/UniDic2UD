@@ -1,8 +1,8 @@
 #! /bin/sh
 # 舞姬-Benchmark with spaCy and conll18_ud_eval.py
 
-MODULE=${1-'spacy'}
-LOAD=${2-'load("ja_core_news_sm")'}
+MODULE=${1-'unidic2ud.spacy'}
+LOAD=${2-'load("kindai")'}
 CONLLU=${3-'maihime.conllu'}
 TMP=/tmp/$MODULE.$$.$CONLLU
 
