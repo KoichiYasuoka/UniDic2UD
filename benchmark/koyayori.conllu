@@ -45,7 +45,7 @@
 11	手ぶり	手振り	NOUN	名詞-普通名詞-一般	_	24	advcl	_	SpaceAfter=No|Translit=テブリ
 12	、	、	PUNCT	補助記号-読点	_	11	punct	_	SpaceAfter=No
 13	ちよつと	ちょっと	ADV	副詞	_	14	advmod	_	SpaceAfter=No|Translit=チョット
-14	し	為る	VERB	動詞-非自立可能	_	16	acl	_	SpaceAfter=No|Translit=シ
+14	し	為る	VERB	動詞-非自立可能	_	19	acl	_	SpaceAfter=No|Translit=シ
 15	た	た	AUX	助動詞	_	14	aux	_	SpaceAfter=No|Translit=タ
 16	口	口	NOUN	名詞-普通名詞-一般	_	19	nmod	_	SpaceAfter=No|Translit=クチ
 17	の	の	ADP	助詞-格助詞	_	16	case	_	SpaceAfter=No|Translit=ノ
