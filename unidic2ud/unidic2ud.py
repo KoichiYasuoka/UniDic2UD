@@ -78,7 +78,7 @@ def download(model,option=None):
   else:
     import urllib.request
     f,h=urllib.request.urlretrieve(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe",filename=os.path.join(DOWNLOAD_DIR,model+".udpipe"),reporthook=progress)
-  print('')
+  print("",flush=True)
 
 def dictlist():
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
