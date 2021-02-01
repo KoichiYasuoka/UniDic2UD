@@ -25,6 +25,7 @@ UDPIPE_VERSION="ud-2.5-191206"
 import ssl
 ssl._create_default_https_context=ssl._create_unverified_context
 
+import sys
 def progress(block_count,block_size,total_size):
   t=time.time()
   p=100.0*block_count*block_size/total_size
@@ -48,7 +49,7 @@ def progress(block_count,block_size,total_size):
     u=time.strftime("%H:%M:%S   ",time.gmtime(t))
   else:
     u=time.strftime("%d+%H:%M:%S   ",time.gmtime(t))
-  print("\r ["+s+"] "+str(int(p))+"% "+u,end="")
+  print("\r ["+s+"] "+str(int(p))+"% "+u,end="",file=sys.stderr)
 
 def download(model,option=None):
   global tm
@@ -78,7 +79,7 @@ def download(model,option=None):
   else:
     import urllib.request
     f,h=urllib.request.urlretrieve(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe",filename=os.path.join(DOWNLOAD_DIR,model+".udpipe"),reporthook=progress)
-  print("",flush=True)
+  print("",flush=True,file=sys.stderr)
 
 def dictlist():
   os.makedirs(DOWNLOAD_DIR,exist_ok=True)
