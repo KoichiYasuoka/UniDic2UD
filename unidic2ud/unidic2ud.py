@@ -215,6 +215,13 @@ class UniDic2UD(object):
         except:
           from fugashi import GenericTagger as Tagger
         self.mecab=Tagger("-r "+r+" -d "+d).parse
+      elif UniDic=="unidic-lite":
+        try:
+          from MeCab import Tagger
+        except:
+          from fugashi import GenericTagger as Tagger
+        import unidic_lite
+        self.mecab=Tagger("-r "+r+" -d "+unidic_lite.DICDIR).parse
       elif UniDic=="ipadic":
         try:
           from MeCab import Tagger
@@ -281,28 +288,35 @@ class UniDic2UD(object):
       for s in self.mecab(t).split("\n"):
         i=s.find("\t")
         if i>0:
-          form=s[0:i]
-          a=s[i+1:].split(",")
-          xpos=a[0]
-          for t in a[1:4]:
-            if t!="*" and t!="　" and t!="":
-              xpos+="-"+t
-          if self.UniDic=="ipadic":
-            if len(a)>7:
-              lemma=a[6]
-              translit=a[7]
-            else:
-              lemma=translit=""
-          elif len(a)<11:
-            lemma=translit=""
+          if self.UniDic=="unidic-lite":
+            a=s.split("\t")
+            form=a[0]
+            xpos=a[4]
+            lemma=a[3]
+            translit=a[1]
           else:
-            lemma=a[7]
-            translit=a[10]
-            if self.UniDic in {"gendai","spoken"}:
-              if len(a)>20:
-                translit=a[20]
+            form=s[0:i]
+            a=s[i+1:].split(",")
+            xpos=a[0]
+            for t in a[1:4]:
+              if t!="*" and t!="　" and t!="":
+                xpos+="-"+t
+            if self.UniDic=="ipadic":
+              if len(a)>7:
+                lemma=a[6]
+                translit=a[7]
               else:
-                translit=a[9]
+                lemma=translit=""
+            elif len(a)<11:
+              lemma=translit=""
+            else:
+              lemma=a[7]
+              translit=a[10]
+              if self.UniDic in {"gendai","spoken"}:
+                if len(a)>20:
+                  translit=a[20]
+                else:
+                  translit=a[9]
           id+=1
         else:
           a=s.split(",")
