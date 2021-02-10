@@ -191,13 +191,16 @@ def to_conllu(item,offset=1):
       if item.norm_!=item.orth_:
         m+="|Translit="+item.norm_
     m=m.replace("_|","")
+    t=item.tag_
+    if t=="":
+      t="_"
     try:
       f=str(item.morph)
       if f.startswith("<spacy") or f=="":
         f="_"
     except:
       f="_"
-    return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,item.tag_,f,str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_",m])
+    return "\t".join([str(item.i+offset),item.orth_,item.lemma_,item.pos_,t,f,str(0 if item.head==item else item.head.i+offset),item.dep_.lower(),"_",m])
   return "".join(to_conllu(s)+"\n" for s in item)
 
 def bunsetu_spans(doc):
