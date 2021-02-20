@@ -444,8 +444,6 @@ class UniDic2UD(object):
   def StanzaAPI(self,conllu):
     d=[]
     e=[]
-    f={"NOUN":"NN","PROPN":"NNP","NUM":"CD","PRON":"NP","VERB":"VV","AUX":"AV","ADJ":"JJ","DET":"JR","ADV":"RB","SCONJ":"PC","CCONJ":"CC","PART":"JN","INTJ":"UH","PUNCT":"SYM","SYM":"SYM"}
-    g={"名詞-普通名詞-副詞可能":"NR","接頭辞":"XP","助詞-格助詞":"PS","助詞-係助詞":"PK","助詞-副助詞":"PH","助詞-準体助詞":"PN","助詞-終助詞":"PE","接尾辞-名詞的-助数詞":"XSC","接尾辞-動詞的":"AV"}
     for s in conllu.split("\n"):
       if s=="" or s.startswith("#"):
         if e!=[]:
@@ -453,12 +451,7 @@ class UniDic2UD(object):
           e=[]
       else:
         t=s.split("\t")
-        x="_"
-        if t[3] in f:
-          x=f[t[3]]
-        if t[4] in g:
-          x=g[t[4]]
-        e.append({"id":int(t[0]),"text":t[1],"lemma":t[2],"upos":t[3],"xpos":x,"misc":t[9]})
+        e.append({"id":int(t[0]),"text":t[1],"lemma":t[2],"upos":t[3],"xpos":t[4],"misc":t[9]})
     from stanza.models.common.doc import Document
     from stanza.utils.conll import CoNLL
     return CoNLL.conll_as_string(CoNLL.convert_dict(self.model(Document(d)).to_dict()))
