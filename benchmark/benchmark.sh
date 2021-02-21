@@ -7,7 +7,6 @@ LOAD=${2-'load("kindai")'}
 CONLLU=${3-'maihime.conllu'}
 TMP=/tmp/$MODULE.$$.$CONLLU
 
-echo '###' $MODULE.$LOAD $CONLLU
 python3 -c '
 import '$MODULE'
 nlp='"$MODULE.$LOAD"'
@@ -21,6 +20,7 @@ with open("'$TMP'","w",encoding="utf-8") as f:
         print("\t".join([str(t.i+1),t.orth_,t.lemma_,t.pos_,t.tag_,"_",str(0 if t.head==t else t.head.i+1),t.dep_.lower(),"_","_" if t.whitespace_ else "SpaceAfter=No"]),file=f)
       print("",file=f)
 '
+echo '###' $MODULE.$LOAD $CONLLU
 python3 conll18_ud_eval.py $CONLLU $TMP
 rm -f $TMP
 exit 0
