@@ -447,7 +447,7 @@ class UniDic2UD(object):
     for s in conllu.split("\n"):
       if s=="" or s.startswith("#"):
         if e!=[]:
-          d.append([t for t in e])
+          d.append(list(e))
           e=[]
       else:
         t=s.split("\t")
