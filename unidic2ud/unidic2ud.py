@@ -70,12 +70,16 @@ def download(model,option=None):
     p=os.path.join(DOWNLOAD_DIR,".temporary")
     with zipfile.ZipFile(f) as z:
       z.extractall(p)
+    d=os.path.join(DOWNLOAD_DIR,model)
+    if os.path.exists(d):
+      import shutil
+      shutil.rmtree(d)
     g=glob.glob(os.path.join(p,"*"))
     if len(g)==1:
-      os.rename(g[0],os.path.join(DOWNLOAD_DIR,model))
+      os.rename(g[0],d)
       os.rmdir(p)
     else:
-      os.rename(p,os.path.join(DOWNLOAD_DIR,model))
+      os.rename(p,d)
   else:
     import urllib.request
     f,h=urllib.request.urlretrieve(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe",filename=os.path.join(DOWNLOAD_DIR,model+".udpipe"),reporthook=progress)
