@@ -7,7 +7,7 @@ DOWNLOAD_DIR=os.path.join(PACKAGE_DIR,"download")
 import time
 tm=time.time()
 
-UNIDIC_URL="https://unidic.ninjal.ac.jp/unidic_archive/"
+UNIDIC_URL="https://ccd.ninjal.ac.jp/unidic_archive/"
 UNIDIC_URLS={
   "gendai":UNIDIC_URL+"cwj/3.1.0/unidic-cwj-3.1.0.zip",
   "spoken":UNIDIC_URL+"csj/3.1.0/unidic-csj-3.1.0.zip",
