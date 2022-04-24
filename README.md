@@ -8,8 +8,8 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 
 ```py
 >>> import unidic2ud
->>> qkana=unidic2ud.load("qkana")
->>> s=qkana("其國を治めんと欲する者は先づ其家を齊ふ")
+>>> nlp=unidic2ud.load("kindai")
+>>> s=nlp("其國を治めんと欲する者は先づ其家を齊ふ")
 >>> print(s)
 # text = 其國を治めんと欲する者は先づ其家を齊ふ
 1	其	其の	DET	連体詞	_	2	det	_	SpaceAfter=No|Translit=ソノ
@@ -70,15 +70,15 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 
 You can simply use `unidic2ud` on the command line:
 ```sh
-echo 其國を治めんと欲する者は先づ其家を齊ふ | unidic2ud -U qkana
+echo 其國を治めんと欲する者は先づ其家を齊ふ | unidic2ud -U kindai
 ```
 
 ## CaboCha emulator usage
 
 ```py
 >>> import unidic2ud.cabocha as CaboCha
->>> qkana=CaboCha.Parser("qkana")
->>> s=qkana.parse("其國を治めんと欲する者は先づ其家を齊ふ")
+>>> c=CaboCha.Parser("kindai")
+>>> s=c.parse("其國を治めんと欲する者は先づ其家を齊ふ")
 >>> print(s.toString(CaboCha.FORMAT_TREE_LATTICE))
   其-D
   國を-D
@@ -136,7 +136,7 @@ EOS
 
 You can simply use `udcabocha` on the command line:
 ```sh
-echo 其國を治めんと欲する者は先づ其家を齊ふ | udcabocha -U qkana -f 2
+echo 其國を治めんと欲する者は先づ其家を齊ふ | udcabocha -U kindai -f 2
 ```
 `-U UniDic` specifies `UniDic`. `-f format` specifies the output format in 0 to 4 above (default is `-f 0`) and in 5 to 8 below:
 * `-f 5`: `to_tree()`
@@ -154,8 +154,8 @@ If you have already installed [spaCy](https://pypi.org/project/spacy/) 2.1.0 or 
 
 ```py
 >>> import unidic2ud.spacy
->>> qkana=unidic2ud.spacy.load("qkana")
->>> d=qkana("其國を治めんと欲する者は先づ其家を齊ふ")
+>>> nlp=unidic2ud.spacy.load("kindai")
+>>> d=nlp("其國を治めんと欲する者は先づ其家を齊ふ")
 >>> print(unidic2ud.spacy.to_conllu(d))
 # text = 其國を治めんと欲する者は先づ其家を齊ふ
 1	其	其の	DET	連体詞	_	2	det	_	SpaceAfter=No|Translit=ソノ
@@ -210,7 +210,7 @@ pip install unidic2ud
 
 By default installation, `UniDic` is invoked through Web APIs. If you want to invoke them locally and faster, you can download `UniDic` which you use just as follows:
 ```sh
-python -m unidic2ud download qkana
+python -m unidic2ud download kindai
 python -m unidic2ud dictlist
 ```
 Licenses of dictionaries and models are: GPL/LGPL/BSD for `gendai` and `spoken`; CC BY-NC-SA 4.0 for others.
