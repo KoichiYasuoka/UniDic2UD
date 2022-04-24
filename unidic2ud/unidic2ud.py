@@ -11,13 +11,13 @@ UNIDIC_URL="https://clrd.ninjal.ac.jp/unidic_archive/"
 UNIDIC_URLS={
   "gendai":UNIDIC_URL+"cwj/3.1.0/unidic-cwj-3.1.0.zip",
   "spoken":UNIDIC_URL+"csj/3.1.0/unidic-csj-3.1.0.zip",
-  "qkana":UNIDIC_URL+"qkana/1603/UniDic-qkana_1603.zip",
-  "kindai":UNIDIC_URL+"kindai/1603/UniDic-kindai_1603.zip",
-  "kinsei":UNIDIC_URL+"kinsei/1603/UniDic-kinsei_1603.zip",
-  "kyogen":UNIDIC_URL+"kyogen/1603/UniDic-kyogen_1603.zip",
-  "wakan":UNIDIC_URL+"wakan/1603/UniDic-wakan_1603.zip",
-  "wabun":UNIDIC_URL+"wabun/1603/UniDic-wabun_1603.zip",
-  "manyo":UNIDIC_URL+"manyo/1603/UniDic-manyo_1603.zip"
+  "qkana":UNIDIC_URL+"2203/UniDic-202203_60b_qkana.zip",
+  "kindai":UNIDIC_URL+"2203/UniDic-202203_60a_kindai-bungo.zip",
+  "kinsei":UNIDIC_URL+"2203/UniDic-202203_50c_kinsei-edo.zip",
+  "kyogen":UNIDIC_URL+"2203/UniDic-202203_40_chusei-kougo.zip",
+  "wakan":UNIDIC_URL+"2203/UniDic-202203_30_chusei-bungo.zip",
+  "wabun":UNIDIC_URL+"2203/UniDic-202203_20_chuko.zip",
+  "manyo":UNIDIC_URL+"2203/UniDic-202203_10_jodai.zip"
 }
 UDPIPE_URL="https://lindat.mff.cuni.cz/repository/xmlui/bitstream/handle/11234/1-3131/"
 UDPIPE_VERSION="ud-2.5-191206"
@@ -65,14 +65,13 @@ def download(model,option=None):
       u=False
   tm=time.time()
   if u:
-    import urllib.request,zipfile,glob
+    import urllib.request,zipfile,glob,shutil
     f,h=urllib.request.urlretrieve(u,reporthook=progress)
     p=os.path.join(DOWNLOAD_DIR,".temporary")
     with zipfile.ZipFile(f) as z:
       z.extractall(p)
     d=os.path.join(DOWNLOAD_DIR,model)
     if os.path.exists(d):
-      import shutil
       shutil.rmtree(d)
     g=glob.glob(os.path.join(p,"*"))
     if len(g)==1:
@@ -80,6 +79,9 @@ def download(model,option=None):
       os.rmdir(p)
     else:
       os.rename(p,d)
+    f=os.path.join(d,"dicrc")
+    if not os.path.isfile(f):
+      shutil.copy(os.path.join(d,".dicrc"),f)
   else:
     import urllib.request
     f,h=urllib.request.urlretrieve(UDPIPE_URL+model+"-"+UDPIPE_VERSION+".udpipe",filename=os.path.join(DOWNLOAD_DIR,model+".udpipe"),reporthook=progress)
