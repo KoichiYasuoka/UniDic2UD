@@ -60,7 +60,7 @@ Tokenizer, POS-tagger, lemmatizer, and dependency-parser for modern and contempo
 * `UniDic="qkana"`: Use [旧仮名口語UniDic](https://clrd.ninjal.ac.jp/unidic/download_all.html#unidic_qkana).
 * `UniDic="kindai"`: Use [近代文語UniDic](https://clrd.ninjal.ac.jp/unidic/download_all.html#unidic_kindai).
 * `UniDic="kinsei"`: Use [近世江戸口語UniDic](https://clrd.ninjal.ac.jp/unidic/download_all.html#unidic_kinsei-edo).
-* `UniDic="kyogen"`: Use [中世口語（狂言）UniDic](https://clrd.ninjal.ac.jp/unidic/download_all.html#unidic_kyogen).
+* `UniDic="kyogen"`: Use [中世口語UniDic](https://clrd.ninjal.ac.jp/unidic/download_all.html#unidic_chusei-kougo).
 * `UniDic="wakan"`: Use [中世文語（説話・随筆）UniDic](https://clrd.ninjal.ac.jp/unidic/download_all.html#unidic_wakan).
 * `UniDic="wabun"`: Use [中古和文UniDic](https://clrd.ninjal.ac.jp/unidic/download_all.html#unidic_wabun).
 * `UniDic="manyo"`: Use [上代（万葉集）UniDic](https://clrd.ninjal.ac.jp/unidic/download_all.html#unidic_manyo).
