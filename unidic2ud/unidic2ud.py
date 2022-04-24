@@ -239,6 +239,8 @@ class UniDic2UD(object):
       else:
         d={ "gendai":"dic1", "spoken":"dic2", "qkana":"dic3", "kindai":"dic4", "kinsei":"dic5", "kyogen":"dic6", "wakan":"dic7", "wabun":"dic8", "manyo":"dic9" }
         self.dictkey=d[UniDic]
+        d={ "spoken":"unidic-spoken", "qkana":"60b_qkana", "kindai":"60a_kindai-bungo", "kinsei":"50c_kinsei-edo", "kyogen":"40_chusei-kougo", "wakan":"30_chusei-bungo", "wabun":"20_chuko", "manyo":"10_jodai" }
+        self.dictvalue=d[UniDic] if UniDic in d else UniDic
         self.mecab=self.ChamameWebAPI
     self.udpipe=self.UDPipeWebAPI
     if UDPipe==None:
@@ -415,7 +417,7 @@ class UniDic2UD(object):
     return UniDic2UDEntry(self.udpipe(u))
   def ChamameWebAPI(self,sentence):
     import random,urllib.request,json
-    f={ self.dictkey:"unidic-spoken" if self.UniDic=="spoken" else self.UniDic, "st":sentence+"\n", "f1":"1", "f3":"1", "f10":"1", "out-e":"csv", "c-code":"utf-8" }
+    f={ self.dictkey:self.dictvalue, "st":sentence+"\n", "f1":"1", "f3":"1", "f10":"1", "out-e":"csv", "c-code":"utf-8" }
     b="".join(random.choice("abcdefghijklmnopqrstuvwxyz0123456789") for i in range(10))
     d="\n".join("--"+b+"\nContent-Disposition:form-data;name="+k+"\n\n"+v for k,v in f.items())+"\n--"+b+"--\n"
     h={ "Content-Type":"multipart/form-data;charset=utf-8;boundary="+b }
