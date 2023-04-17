@@ -9,8 +9,9 @@ tm=time.time()
 
 UNIDIC_URL="https://clrd.ninjal.ac.jp/unidic_archive/"
 UNIDIC_URLS={
-  "gendai":UNIDIC_URL+"cwj/3.1.1/unidic-cwj-3.1.1.zip",
-  "spoken":UNIDIC_URL+"csj/3.1.1/unidic-csj-3.1.1.zip",
+  "gendai":UNIDIC_URL+"2302/unidic-cwj-202302.zip",
+  "spoken":UNIDIC_URL+"2302/unidic-csj-202302.zip",
+  "novel":UNIDIC_URL+"2203/UniDic-202203_65_novel.zip",
   "qkana":UNIDIC_URL+"2203/UniDic-202203_60b_qkana.zip",
   "kindai":UNIDIC_URL+"2203/UniDic-202203_60a_kindai-bungo.zip",
   "kinsei":UNIDIC_URL+"2203/UniDic-202203_50c_kinsei-edo.zip",
@@ -239,9 +240,9 @@ class UniDic2UD(object):
         except:
           self.mecab=Tagger().parse
       else:
-        d={ "gendai":"dic1", "spoken":"dic2", "qkana":"dic3", "kindai":"dic4", "kinsei":"dic5", "kyogen":"dic6", "wakan":"dic7", "wabun":"dic8", "manyo":"dic9" }
+        d={ "gendai":"dic1", "spoken":"dic2", "novel":"dic11", "qkana":"dic3", "kindai":"dic4", "kinsei":"dic5", "kyogen":"dic6", "wakan":"dic7", "wabun":"dic8", "manyo":"dic9" }
         self.dictkey=d[UniDic]
-        d={ "spoken":"unidic-spoken", "qkana":"60b_qkana", "kindai":"60a_kindai-bungo", "kinsei":"50c_kinsei-edo", "kyogen":"40_chusei-kougo", "wakan":"30_chusei-bungo", "wabun":"20_chuko", "manyo":"10_jodai" }
+        d={ "spoken":"unidic-spoken", "novel":"65_novel", "qkana":"60b_qkana", "kindai":"60a_kindai-bungo", "kinsei":"50c_kinsei-edo", "kyogen":"40_chusei-kougo", "wakan":"30_chusei-bungo", "wabun":"20_chuko", "manyo":"10_jodai" }
         self.dictvalue=d[UniDic] if UniDic in d else UniDic
         self.mecab=self.ChamameWebAPI
     self.udpipe=self.UDPipeWebAPI
