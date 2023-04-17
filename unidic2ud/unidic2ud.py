@@ -9,8 +9,8 @@ tm=time.time()
 
 UNIDIC_URL="https://clrd.ninjal.ac.jp/unidic_archive/"
 UNIDIC_URLS={
-  "gendai":UNIDIC_URL+"cwj/3.1.0/unidic-cwj-3.1.0.zip",
-  "spoken":UNIDIC_URL+"csj/3.1.0/unidic-csj-3.1.0.zip",
+  "gendai":UNIDIC_URL+"cwj/3.1.1/unidic-cwj-3.1.1.zip",
+  "spoken":UNIDIC_URL+"csj/3.1.1/unidic-csj-3.1.1.zip",
   "qkana":UNIDIC_URL+"2203/UniDic-202203_60b_qkana.zip",
   "kindai":UNIDIC_URL+"2203/UniDic-202203_60a_kindai-bungo.zip",
   "kinsei":UNIDIC_URL+"2203/UniDic-202203_50c_kinsei-edo.zip",
