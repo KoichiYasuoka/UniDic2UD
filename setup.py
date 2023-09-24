@@ -22,7 +22,7 @@ else:
 
 setuptools.setup(
   name="unidic2ud",
-  version="3.0.0",
+  version="3.0.1",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
