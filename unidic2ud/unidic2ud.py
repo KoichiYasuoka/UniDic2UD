@@ -221,14 +221,14 @@ class UniDic2UD(object):
           from MeCab import Tagger
         except:
           from fugashi import GenericTagger as Tagger
-        self.mecab=Tagger("-r "+r+" -d "+d).parse
+        self.mecab=Tagger("-r "+r.replace("\\","\\\\")+" -d "+d.replace("\\","\\\\")).parse
       elif UniDic=="unidic-lite":
         try:
           from MeCab import Tagger
         except:
           from fugashi import GenericTagger as Tagger
         import unidic_lite
-        self.mecab=Tagger("-r "+r+" -d "+unidic_lite.DICDIR).parse
+        self.mecab=Tagger("-r "+r.replace("\\","\\\\")+" -d "+unidic_lite.DICDIR.replace("\\","\\\\")).parse
       elif UniDic=="ipadic":
         try:
           from MeCab import Tagger
