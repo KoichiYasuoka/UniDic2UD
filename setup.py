@@ -16,13 +16,13 @@ else:
     import os
     useFugashi&=(os.name=="nt")
   if useFugashi:
-    install_requires=["ufal.udpipe>=1.2.0.3","fugashi>=1.3.2","deplacy>=2.1.0"]
+    install_requires=["ufal.udpipe>=1.2.0.3","fugashi>=1.3.3","deplacy>=2.1.0"]
   else:
     install_requires=["ufal.udpipe>=1.2.0.3","mecab-python3>=0.996.5","deplacy>=2.1.0"]
 
 setuptools.setup(
   name="unidic2ud",
-  version="3.0.5",
+  version="3.0.6",
   description="Tokenizer POS-tagger Lemmatizer and Dependency-parser for modern and contemporary Japanese",
   long_description=long_description,
   long_description_content_type="text/markdown",
