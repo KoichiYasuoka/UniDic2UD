@@ -72,7 +72,8 @@ class UniDicTokenizer(object):
         heads.append(0)
         deps.append(r)
       else:
-        heads.append(int(head)-int(id))
+        h=int(head)-int(id)
+        heads.append(2**64+h if h<0 else h)
         deps.append(vs.add(deprel))
       spaces.append(False if "SpaceAfter=No" in misc else True)
       i=misc.find("Translit=")
