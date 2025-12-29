@@ -420,7 +420,7 @@ class UniDic2UD(object):
     return UniDic2UDEntry(self.udpipe(u))
   def ChamameWebAPI(self,sentence):
     import random,urllib.request,json
-    f={ self.dictkey:self.dictvalue, "st":sentence+"\n", "f1":"1", "f3":"1", "f10":"1", "out-e":"csv", "c-code":"utf-8" }
+    f={ "dic_version":"ver.251218", self.dictkey:self.dictvalue, "st":sentence+"\n", "f1":"1", "f3":"1", "f10":"1", "out-e":"csv", "c-code":"utf-8" }
     b="".join(random.choice("abcdefghijklmnopqrstuvwxyz0123456789") for i in range(10))
     d="\n".join("--"+b+"\nContent-Disposition:form-data;name="+k+"\n\n"+v for k,v in f.items())+"\n--"+b+"--\n"
     h={ "Content-Type":"multipart/form-data;charset=utf-8;boundary="+b }
